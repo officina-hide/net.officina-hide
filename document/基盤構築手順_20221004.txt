@@ -1,0 +1,16 @@
+FDプロジェクト　00-02
+
+●プロジェクト基盤構築手順
+	1. 各基盤テーブル情報ID
+			101 テーブル情報 FD_Table
+			102 カラム情報 FD_Column
+			103 採番情報 FD_Numbering
+			104 参照情報 FD_Reference
+	2-1. テーブル情報構築
+		カラム情報
+			10001 テーブル物理名,FD_Table_Name,String,100
+			10002 名前,FD_Name,String,200
+			10003 説明,FD_Description,Text
+			10010～共通項目(ID,UU,登録日,登録者,更新日,更新者,Group,Active)
+	2-2. テーブル情報登録
+		上記の101～104のテーブル情報を登録する。（追加あり）
