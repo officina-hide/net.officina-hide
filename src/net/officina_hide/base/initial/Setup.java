@@ -1,6 +1,8 @@
 package net.officina_hide.base.initial;
 
 import javafx.application.Application;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -25,6 +27,7 @@ public class Setup extends Application {
 	@Override
 	public void start(Stage stage) throws Exception {
 		VBox root = new VBox(5);
+		root.setPadding(new Insets(10, 10, 10, 10));
 		setItem(root);
 		Scene scene = new Scene(root, 500, 600);
 		stage.setScene(scene);
@@ -39,6 +42,7 @@ public class Setup extends Application {
 	private void setItem(VBox root) {
 		//データベース項目
 		HBox dbServerNameBox = new HBox(5);
+		dbServerNameBox.setAlignment(Pos.CENTER_LEFT);
 		Label lb01 = new Label("データベース・サーバー名");
 		TextField tx01 = new TextField("");
 		dbServerNameBox.getChildren().addAll(lb01, tx01);
