@@ -4,11 +4,12 @@ import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.Button;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import net.officina_hide.base.control.DBConnectTest;
+import net.officina_hide.base.model.SingleText;
 import net.officina_hide.base.model.VC_ViewItem;
 
 /**
@@ -23,6 +24,14 @@ public class Setup extends Application {
 
 	/** 画面項目クラス */
 	VC_ViewItem vvi = new VC_ViewItem();
+	/** データベースサーバー名 */
+	private SingleText dbServerName;
+	/** データベース名 */
+	private SingleText dbName;
+	/** データベースポート */
+	private SingleText dbPort;
+	/** データベースユーザーID */
+	private SingleText dbUserId;
 	
 	@Override
 	public void start(Stage stage) throws Exception {
@@ -41,13 +50,24 @@ public class Setup extends Application {
 	 */
 	private void setItem(VBox root) {
 		//データベース項目
-		HBox dbServerNameBox = new HBox(5);
-		dbServerNameBox.setAlignment(Pos.CENTER_LEFT);
-		Label lb01 = new Label("データベース・サーバー名");
-		TextField tx01 = new TextField("");
-		dbServerNameBox.getChildren().addAll(lb01, tx01);
+		dbServerName = new SingleText("データベース・サーバー名");
+		dbName = new SingleText("データベース名");
+		dbPort = new SingleText("ポート");
+		dbUserId = new SingleText("ユーザーID");
 		
-		root.getChildren().addAll(dbServerNameBox);
+		HBox buttonBox = new HBox(5);
+		buttonBox.setAlignment(Pos.CENTER_RIGHT);
+		Button textButton = new Button("テスト");
+		textButton.setOnAction(event->{
+			//接続テスト
+			DBConnectTest dct = new DBConnectTest();
+			
+		});
+		buttonBox.getChildren().add(textButton);
+		
+		root.getChildren().addAll(dbServerName.getNode(), dbName.getNode(), dbPort.getNode(),
+				dbUserId.getNode(), buttonBox);
+		
 	}
 
 	public static void main(String[] args) {
