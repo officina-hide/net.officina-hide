@@ -9,6 +9,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import net.officina_hide.base.control.DBConnectTest;
+import net.officina_hide.base.model.PasswordText;
 import net.officina_hide.base.model.SingleText;
 import net.officina_hide.base.model.VC_ViewItem;
 
@@ -32,6 +33,8 @@ public class Setup extends Application {
 	private SingleText dbPort;
 	/** データベースユーザーID */
 	private SingleText dbUserId;
+	/** データベースパスワード */
+	private PasswordText dbPassword;
 	
 	@Override
 	public void start(Stage stage) throws Exception {
@@ -54,6 +57,7 @@ public class Setup extends Application {
 		dbName = new SingleText("データベース名");
 		dbPort = new SingleText("ポート");
 		dbUserId = new SingleText("ユーザーID");
+		dbPassword = new PasswordText("パスワード");
 		
 		HBox buttonBox = new HBox(5);
 		buttonBox.setAlignment(Pos.CENTER_RIGHT);
@@ -61,12 +65,19 @@ public class Setup extends Application {
 		textButton.setOnAction(event->{
 			//接続テスト
 			DBConnectTest dct = new DBConnectTest();
-			
+			dct.setSetverName(dbServerName.getText());
+			dct.setDbName(dbName.getText());
+			dct.setDbPort(dbPort.getText());
+			dct.setUserId(dbUserId.getText());
+			dct.setPassword(dbPassword.getText());
+			if(dct.connectTest() == true) {
+				System.out.println("接続OK");
+			}
 		});
 		buttonBox.getChildren().add(textButton);
 		
 		root.getChildren().addAll(dbServerName.getNode(), dbName.getNode(), dbPort.getNode(),
-				dbUserId.getNode(), buttonBox);
+				dbUserId.getNode(), dbPassword.getNode(), buttonBox);
 		
 	}
 

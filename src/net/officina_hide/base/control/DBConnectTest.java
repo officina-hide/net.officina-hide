@@ -12,10 +12,15 @@ import java.sql.SQLException;
  */
 public class DBConnectTest {
 
+	/** サーバー名[Server Name] */
 	private String setverName;
+	/** データベース名[Database Name] */
 	private String dbName;
+	/** データベース接続ポート[Database connection port] */
 	private String dbPort;
+	/** 接続ユーザーID[Connection user ID] */
 	private String userId;
+	/** 接続パスワード[Connection password] */
 	private String password;
 	
 	/**
@@ -39,5 +44,45 @@ public class DBConnectTest {
 			e.printStackTrace();
 		}
 		return chk;
+	}
+
+	public String getSetverName() {
+		return setverName;
+	}
+
+	public void setSetverName(String setverName) {
+		this.setverName = setverName;
+	}
+
+	public String getDbName() {
+		return dbName;
+	}
+
+	public void setDbName(String dbName) {
+		this.dbName = dbName;
+	}
+
+	public String getDbPort() {
+		return dbPort;
+	}
+
+	public void setDbPort(String dbPort) {
+		this.dbPort = dbPort;
+	}
+
+	public String getUserId() {
+		return userId;
+	}
+
+	public void setUserId(String userId) {
+		this.userId = userId;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
 	}
 }

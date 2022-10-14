@@ -3,61 +3,55 @@ package net.officina_hide.base.model;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.PasswordField;
 import javafx.scene.layout.HBox;
-import javafx.scene.text.Font;
 
 /**
- * １行テキストクラス[Single text class]
- * FIXME ラベルと項目の縦位置をそろえる。 2022/10/11
+ * パスワード用テキスト領域[Text area for password]
  * @author officina-hide.net
  * @version 1.00 新規作成[New create]
- * @since 2022/10/11
+ * @since 2022/10/13 Ver. 1.00
  */
-public class SingleText {
-
+public class PasswordText {
 	/** ラベル名 */
 	private String labelName;
-	/** 入力項目 */
-	private TextField text;
-	/** フォント */
-	private Font font = new Font("Meiryo UI", 12);
-	
+	/** パスワード入力項目 */
+	private PasswordField password;
+
 	/**
 	 * コンストラクタ[Constructor]
+	 * @author officina-hide.net
+	 * @since 2022/10/13 Ver. 1.00
 	 * @param labelName ラベル名
 	 */
-	public SingleText(String labelName) {
+	public PasswordText(String labelName) {
 		this.labelName = labelName;
 	}
 
 	/**
 	 * 画面ノード取得[Getting screen node]
 	 * @author officina-hide.net
-	 * @since 2022/10/11
+	 * @since 2022/10/13 Ver. 1.00
 	 * @return 画面ノード
 	 */
 	public Node getNode() {
 		HBox box = new HBox(5);
 		box.setAlignment(Pos.CENTER_LEFT);
 		Label label = new Label(labelName);
-		label.setFont(font);
-		text = new TextField();
-		text.setFont(font);
-		
-		box.getChildren().addAll(label, text);
-		
+		password = new PasswordField();
+		box.getChildren().addAll(label, password);
 		return box;
 	}
 
 	/**
-	 * 入力情報取得[Get input information]
+	 * パスワード文字列取得[Getting password strings]
 	 * @author officina-hide.net
-	 * @since 2022/10/13 Ver. 1.00
-	 * @return 入力情報
+	 * @since 2022/10/14 Ver. 1.00
+	 * @return パスワード文字列[Password strings]
 	 */
 	public String getText() {
-		return text.getText();
+		return password.getText();
 	}
+
 
 }
