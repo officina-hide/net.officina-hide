@@ -60,4 +60,17 @@ public class SingleText {
 		return text.getText();
 	}
 
+	/**
+	 * テキスト領域セット[Setting text field]
+	 * @author officina-hide.net
+	 * @since 2022/10/17 Ver. 1.00
+	 * @param data テキスト
+	 */
+	public void setText(String data) {
+		if(text == null) {
+			text = new TextField();
+		}
+		text.setText(data);
+	}
+
 }

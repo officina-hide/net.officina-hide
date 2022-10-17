@@ -53,5 +53,17 @@ public class PasswordText {
 		return password.getText();
 	}
 
+	/**
+	 * パスワード文字列セット[Setting password strings]
+	 * @author officina-hide.net
+	 * @since 2022/10/17 Ver. 1.00
+	 */
+	public void setText(String data) {
+		if(password == null) {
+			password = new PasswordField();
+		}
+		password.setText(data);
+	}
+
 
 }
