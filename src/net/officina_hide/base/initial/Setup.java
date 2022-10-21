@@ -11,10 +11,12 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import net.officina_hide.base.control.DBConnectTest;
+import net.officina_hide.base.model.FDCheck;
 import net.officina_hide.base.model.I_FD_DB;
 import net.officina_hide.base.model.PasswordText;
 import net.officina_hide.base.model.SingleText;
@@ -42,6 +44,8 @@ public class Setup extends Application implements I_FD_DB {
 	private SingleText dbUserId;
 	/** データベースパスワード */
 	private PasswordText dbPassword;
+	/** DB初期化チェック */
+	private FDCheck dbExsistsCheck;
 	/** 保存ボタン */
 	private Button saveButton;
 	
@@ -93,6 +97,7 @@ public class Setup extends Application implements I_FD_DB {
 		dbPort = new SingleText("ポート");
 		dbUserId = new SingleText("ユーザーID");
 		dbPassword = new PasswordText("パスワード");
+		dbExsistsCheck = new FDCheck("DB作成済み");
 		
 		HBox buttonBox = new HBox(5);
 		buttonBox.setAlignment(Pos.CENTER_RIGHT);
