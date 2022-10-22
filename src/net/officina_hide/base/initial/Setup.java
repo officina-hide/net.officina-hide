@@ -10,6 +10,8 @@ import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.layout.HBox;
@@ -17,6 +19,7 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import net.officina_hide.base.control.DBConnectTest;
 import net.officina_hide.base.model.FDCheck;
+import net.officina_hide.base.model.FD_DB;
 import net.officina_hide.base.model.I_FD_DB;
 import net.officina_hide.base.model.PasswordText;
 import net.officina_hide.base.model.SingleText;
@@ -48,6 +51,8 @@ public class Setup extends Application implements I_FD_DB {
 	private FDCheck dbExsistsCheck;
 	/** 保存ボタン */
 	private Button saveButton;
+	/** DBクラス */
+	private FD_DB DB;
 	
 	@Override
 	public void start(Stage stage) {
@@ -104,19 +109,29 @@ public class Setup extends Application implements I_FD_DB {
 		Button testButton = new Button("テスト");
 		testButton.setOnAction(event->{
 			//接続テスト
-			DBConnectTest dct = new DBConnectTest();
-			dct.setSetverName(dbServerName.getText());
-			dct.setDbName(dbName.getText());
-			dct.setDbPort(dbPort.getText());
-			dct.setUserId(dbUserId.getText());
-			dct.setPassword(dbPassword.getText());
-			if(dct.connectTest() == true) {
-				System.out.println("接続OK");
+			if(checkDBConnection() == true) {
+				Alert alert = new Alert(AlertType.INFORMATION);
+				alert.setHeaderText("接続OK");
+				alert.showAndWait();
 				saveButton.setDisable(false);
 			} else {
-				System.out.println("接続エラー");
+				Alert alert = new Alert(AlertType.ERROR);
+				alert.setHeaderText("接続エラー");
+				alert.showAndWait();
 				saveButton.setDisable(true);
 			}
+//			DBConnectTest dct = new DBConnectTest();
+//			dct.setSetverName(dbServerName.getText());
+//			dct.setDbName(dbName.getText());
+//			dct.setDbPort(dbPort.getText());
+//			dct.setUserId(dbUserId.getText());
+//			dct.setPassword(dbPassword.getText());
+//			if(dct.connectTest() == true) {
+//				System.out.println("接続OK");
+//			} else {
+//				System.out.println("接続エラー");
+//				saveButton.setDisable(true);
+//			}
 		});
 		saveButton = new Button("保存");
 		saveButton.setDisable(true);
@@ -140,8 +155,26 @@ public class Setup extends Application implements I_FD_DB {
 		buttonBox.getChildren().addAll(testButton, saveButton);
 		
 		root.getChildren().addAll(dbServerName.getNode(), dbName.getNode(), dbPort.getNode(),
-				dbUserId.getNode(), dbPassword.getNode(), buttonBox);
+				dbUserId.getNode(), dbPassword.getNode(), dbExsistsCheck.getNode(), buttonBox);
 		
+	}
+
+	/**
+	 * データベース接続テスト[Database connection test]
+	 * @author officina-hide.net
+	 * @since 2022/10/22 Ver. 1.00
+	 * @return True - 接続OK, false - 接続エラー
+	 */
+	private boolean checkDBConnection() {
+		boolean chk = false;
+		DBConnectTest dct = new DBConnectTest();
+		dct.setSetverName(dbServerName.getText());
+		dct.setDbName(dbName.getText());
+		dct.setDbPort(dbPort.getText());
+		dct.setUserId(dbUserId.getText());
+		dct.setPassword(dbPassword.getText());
+		chk = dct.connectTest();
+		return chk;
 	}
 
 	public static void main(String[] args) {
