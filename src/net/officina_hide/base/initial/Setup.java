@@ -13,13 +13,13 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
-import javafx.scene.control.CheckBox;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import net.officina_hide.base.control.DBConnectTest;
 import net.officina_hide.base.model.FDCheck;
 import net.officina_hide.base.model.FD_DB;
+import net.officina_hide.base.model.FD_EnvData;
 import net.officina_hide.base.model.I_FD_DB;
 import net.officina_hide.base.model.PasswordText;
 import net.officina_hide.base.model.SingleText;
@@ -53,6 +53,8 @@ public class Setup extends Application implements I_FD_DB {
 	private Button saveButton;
 	/** DBクラス */
 	private FD_DB DB;
+	/** 環境情報 */
+	private FD_EnvData env = null;
 	
 	@Override
 	public void start(Stage stage) {
@@ -65,7 +67,7 @@ public class Setup extends Application implements I_FD_DB {
 		stage.setTitle("初期設定");
 
 		//設定情報取得
-		getEnvData();
+		env = getEnvData();
 		
 		stage.show();
 	}
@@ -73,9 +75,10 @@ public class Setup extends Application implements I_FD_DB {
 	/**
 	 * 設定情報取得[Get setting information]<br>
 	 * @author officina-hide.net
+	 * @return 
 	 * @since 2022/10/17 Ver. 1.00
 	 */
-	private void getEnvData() {
+	private FD_EnvData getEnvData() {
 		try {
 			File propFile = new File("./Env.prop");
 			FileInputStream is = new FileInputStream(propFile);
@@ -86,9 +89,13 @@ public class Setup extends Application implements I_FD_DB {
 			dbPort.setText(prop.getProperty(DB_PORT));
 			dbUserId.setText(prop.getProperty(DB_USER_ID));
 			dbPassword.setText(prop.getProperty(DB_USER_PASSWORD));
+			//環境情報セット
+			env = new FD_EnvData(prop);
 		} catch (IOException e) {
 			//何もしない
 		}
+		
+		return env;
 	}
 
 	/**
@@ -114,24 +121,16 @@ public class Setup extends Application implements I_FD_DB {
 				alert.setHeaderText("接続OK");
 				alert.showAndWait();
 				saveButton.setDisable(false);
+				//DB初期設定確認
+				if(DB.isExistsTable("FD_Table") == true) {
+					setEnv();
+				}
 			} else {
 				Alert alert = new Alert(AlertType.ERROR);
 				alert.setHeaderText("接続エラー");
 				alert.showAndWait();
 				saveButton.setDisable(true);
 			}
-//			DBConnectTest dct = new DBConnectTest();
-//			dct.setSetverName(dbServerName.getText());
-//			dct.setDbName(dbName.getText());
-//			dct.setDbPort(dbPort.getText());
-//			dct.setUserId(dbUserId.getText());
-//			dct.setPassword(dbPassword.getText());
-//			if(dct.connectTest() == true) {
-//				System.out.println("接続OK");
-//			} else {
-//				System.out.println("接続エラー");
-//				saveButton.setDisable(true);
-//			}
 		});
 		saveButton = new Button("保存");
 		saveButton.setDisable(true);
@@ -156,6 +155,15 @@ public class Setup extends Application implements I_FD_DB {
 		
 		root.getChildren().addAll(dbServerName.getNode(), dbName.getNode(), dbPort.getNode(),
 				dbUserId.getNode(), dbPassword.getNode(), dbExsistsCheck.getNode(), buttonBox);
+		
+	}
+
+	/**
+	 * 環境情報セット[Environment information set]
+	 * @author officina-hide.net
+	 * @since 2022/10/26 Ver 1.00
+	 */
+	private void setEnv() {
 		
 	}
 

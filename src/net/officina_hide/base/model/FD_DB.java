@@ -8,4 +8,8 @@ package net.officina_hide.base.model;
  */
 public class FD_DB {
 
+	public boolean isExistsTable(String tableName) {
+		return false;
+	}
+
 }
