@@ -52,7 +52,7 @@ public class Setup extends Application implements I_FD_DB {
 	/** 保存ボタン */
 	private Button saveButton;
 	/** DBクラス */
-	private FD_DB DB;
+	private FD_DB DB = new FD_DB();
 	/** 環境情報 */
 	private FD_EnvData env = null;
 	
@@ -122,8 +122,11 @@ public class Setup extends Application implements I_FD_DB {
 				alert.showAndWait();
 				saveButton.setDisable(false);
 				//DB初期設定確認
-				if(DB.isExistsTable("FD_Table") == true) {
-					setEnv();
+				setEnv();
+				if(DB.isExistsTable(env, "FD_Table") == true) {
+					System.out.println("テーブル有り");
+				} else {
+					System.out.println("テーブル無し");
 				}
 			} else {
 				Alert alert = new Alert(AlertType.ERROR);
@@ -164,7 +167,11 @@ public class Setup extends Application implements I_FD_DB {
 	 * @since 2022/10/26 Ver 1.00
 	 */
 	private void setEnv() {
-		
+		env.setDbServerName(dbServerName.getText());
+		env.setDbName(dbName.getText());
+		env.setDbPort(dbPort.getText());
+		env.setDbUserID(dbUserId.getText());
+		env.setDbPassword(dbPassword.getText());
 	}
 
 	/**
