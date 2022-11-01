@@ -23,6 +23,7 @@ import net.officina_hide.base.model.FD_EnvData;
 import net.officina_hide.base.model.I_FD_DB;
 import net.officina_hide.base.model.PasswordText;
 import net.officina_hide.base.model.SingleText;
+import net.officina_hide.base.model.StatusBar;
 import net.officina_hide.base.model.VC_ViewItem;
 
 /**
@@ -51,6 +52,11 @@ public class Setup extends Application implements I_FD_DB {
 	private FDCheck dbExsistsCheck;
 	/** 保存ボタン */
 	private Button saveButton;
+	/** ステータスバー[Status bar] */
+	private StatusBar setupStatus;
+	/** データベース初期化ボタン[Database initialization button] */
+	private Button dbInitButton;
+	
 	/** DBクラス */
 	private FD_DB DB = new FD_DB();
 	/** 環境情報 */
@@ -110,6 +116,7 @@ public class Setup extends Application implements I_FD_DB {
 		dbUserId = new SingleText("ユーザーID");
 		dbPassword = new PasswordText("パスワード");
 		dbExsistsCheck = new FDCheck("DB作成済み");
+		setupStatus = new StatusBar();
 		
 		HBox buttonBox = new HBox(5);
 		buttonBox.setAlignment(Pos.CENTER_RIGHT);
@@ -125,8 +132,10 @@ public class Setup extends Application implements I_FD_DB {
 				setEnv();
 				if(DB.isExistsTable(env, "FD_Table") == true) {
 					System.out.println("テーブル有り");
+					dbExsistsCheck.setCheck(true);
 				} else {
 					System.out.println("テーブル無し");
+					dbExsistsCheck.setCheck(false);
 				}
 			} else {
 				Alert alert = new Alert(AlertType.ERROR);
@@ -153,11 +162,14 @@ public class Setup extends Application implements I_FD_DB {
 				e.printStackTrace();
 			}
 		});
+		dbInitButton = new Button("DB初期化");
+		dbInitButton.setDisable(true);
 		
-		buttonBox.getChildren().addAll(testButton, saveButton);
+		buttonBox.getChildren().addAll(testButton, saveButton, dbInitButton);
 		
 		root.getChildren().addAll(dbServerName.getNode(), dbName.getNode(), dbPort.getNode(),
-				dbUserId.getNode(), dbPassword.getNode(), dbExsistsCheck.getNode(), buttonBox);
+				dbUserId.getNode(), dbPassword.getNode(), dbExsistsCheck.getNode(), buttonBox,
+				setupStatus.getNode());
 		
 	}
 

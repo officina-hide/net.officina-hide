@@ -46,4 +46,14 @@ public class FDCheck {
 		box.getChildren().addAll(check);
 		return box;
 	}
+
+	/**
+	 * チェックボックスセット[Setting of check box]
+	 * @author officina-hide.net
+	 * @since 2022/10/31 Ver. 1.00
+	 * @param chk true - チェック、false - チェック外す
+	 */
+	public void setCheck(boolean chk) {
+		check.setSelected(chk);
+	}
 }
