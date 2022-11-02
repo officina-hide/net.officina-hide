@@ -4,6 +4,8 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.util.Properties;
 
 import javafx.application.Application;
@@ -128,6 +130,7 @@ public class Setup extends Application implements I_FD_DB {
 				alert.setHeaderText("接続OK");
 				alert.showAndWait();
 				saveButton.setDisable(false);
+				dbInitButton.setDisable(false);
 				//DB初期設定確認
 				setEnv();
 				if(DB.isExistsTable(env, "FD_Table") == true) {
@@ -164,6 +167,19 @@ public class Setup extends Application implements I_FD_DB {
 		});
 		dbInitButton = new Button("DB初期化");
 		dbInitButton.setDisable(true);
+		dbInitButton.setOnAction(event->{
+			try {
+				String className = "net.officina_hide.base.initial.FD_DBInitial";
+				Class<?> clazz = Class.forName(className);
+				Object obj = clazz.getDeclaredConstructor().newInstance();
+				Method execute = clazz.getMethod("execute");
+				execute.invoke(obj);
+			} catch (ClassNotFoundException | InstantiationException | IllegalAccessException |
+					IllegalArgumentException | InvocationTargetException | NoSuchMethodException |
+					SecurityException e) {
+				e.printStackTrace();
+			}
+		});
 		
 		buttonBox.getChildren().addAll(testButton, saveButton, dbInitButton);
 		
