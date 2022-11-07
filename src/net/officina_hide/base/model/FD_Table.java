@@ -1,12 +1,15 @@
 package net.officina_hide.base.model;
 
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+
 /**
  * テーブル情報クラス[Table information class]<br>
  * @author officina-hide.net
  * @version 1.00 新規作成[New create]
  * @since 2022/11/07 Ver. 1.00
  */
-public class FD_Table implements I_FD_Table {
+public class FD_Table extends FD_DB implements I_FD_Table {
 
 	/** 環境情報[Environment information] */
 	private FD_EnvData env;
@@ -23,7 +26,19 @@ public class FD_Table implements I_FD_Table {
 	 * @since 2022/11/07 Ver. 1.00
 	 */
 	public void initialize() {
-		
+		connection(env);
+		PreparedStatement pstmt = null;
+		try {
+			pstmt = getConn().prepareStatement(SQL_DROP_FD_TABLE);
+			pstmt.execute();
+			DBClose(pstmt, null);
+			pstmt = getConn().prepareStatement(SQL_CREATE_FD_TABLE);
+			pstmt.execute();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DBClose(pstmt, null);
+		}
 	}
 
 }

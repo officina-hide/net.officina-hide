@@ -18,8 +18,13 @@ public interface I_FD_Table extends I_FD_DB {
 	
 
 	/** テーブル情報構築用SQL[SQL for building table information] */
+	public final String SQL_DROP_FD_TABLE = 
+			"DROP TABLE IF EXISTS " + Table_Name + " ;";
 	public final String SQL_CREATE_FD_TABLE = 
 			"CREATE TABLE IF NOT EXISTS " + Table_Name + " ("
-			+ COLUMNNAME_FD_Table_ID + COLUMN_TYPE_ID_KEY + COMMENT + FD_SQ + "" + FD_SQ
-			+ ");";
+			+ COLUMNNAME_FD_Table_ID + COLUMN_TYPE_ID_KEY 
+				+ COMMENT + FD_SQ + COMMENT_FD_Table_ID + FD_SQ
+			+ ")"
+			+ COMMENT + FD_SQ + Table_Comment + FD_SQ
+			+";";
 }

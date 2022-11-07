@@ -37,7 +37,6 @@ public class FD_DBInitial {
 	public void execute() {
 		System.out.println("データベース初期化開始 : "+new Date());
 		//テーブル情報
-		System.out.println(env.getDbName());
 		FD_Table table = new FD_Table(env);
 		table.initialize();
 		//カラム情報

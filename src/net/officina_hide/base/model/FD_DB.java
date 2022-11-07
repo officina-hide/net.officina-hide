@@ -60,17 +60,45 @@ public class FD_DB {
 	 * @param env 環境情報[Environment information]
 	 */
 	public void connection(FD_EnvData env) {
-		if(conn == null) {
-			try {
+		try {
+			if(conn == null || conn.isClosed()) {
 				Class.forName("com.mysql.cj.jdbc.Driver");
 				StringBuffer url = new StringBuffer();
 				url.append("jdbc:mysql:")
 					.append(env.getDbServerName()).append(":").append(env.getDbPort()).append("/").append(env.getDbName());
 				conn = DriverManager.getConnection(url.toString(), env.getDbUserID(), env.getDbPassword());
 				System.out.println(new Date() + " : "+"Database Connected.");
-			} catch (ClassNotFoundException | SQLException e) {
-				e.printStackTrace();
 			}
+		} catch (SQLException | ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+	}
+
+	/**
+	 * 接続情報取得[Get connection information]<br>
+	 * @author officina-hide.net
+	 * @since 2022/11/07 Ver. 1.00
+	 * @return 接続情報[Connection information]
+	 */
+	public static Connection getConn() {
+		return conn;
+	}
+	
+	/**
+	 * 
+	 * @param pstmt
+	 * @param object
+	 */
+	public void DBClose(PreparedStatement pstmt, ResultSet rs) {
+		try {
+			if(pstmt != null) {
+				pstmt.close();
+			}
+			if(rs != null) {
+				rs.close();
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
 		}
 	}
 
