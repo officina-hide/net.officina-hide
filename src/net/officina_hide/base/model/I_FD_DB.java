@@ -18,5 +18,12 @@ public interface I_FD_DB {
 	public final String DB_USER_ID = "dbUerID";
 	/** データベースユーザーパスワード */
 	public final String DB_USER_PASSWORD = "dbUserPassword";
+	
+	/** SQL用カラム属性設定[Column attribute setting for SQL] */
+	public final String COLUMN_TYPE_ID_KEY = " bigint unsigned NOT NULL PRIMARY KEY ";
+	/** SQL用コメント[Comments for SQL] */
+	public final String COMMENT = " COMMENT ";
+	/** シングルコーテーション[single quotes] */
+	public final static String FD_SQ = "'";
 
 }

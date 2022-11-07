@@ -171,7 +171,7 @@ public class Setup extends Application implements I_FD_DB {
 			try {
 				String className = "net.officina_hide.base.initial.FD_DBInitial";
 				Class<?> clazz = Class.forName(className);
-				Object obj = clazz.getDeclaredConstructor().newInstance();
+				Object obj = clazz.getDeclaredConstructor(FD_EnvData.class).newInstance(env);
 				Method execute = clazz.getMethod("execute");
 				execute.invoke(obj);
 			} catch (ClassNotFoundException | InstantiationException | IllegalAccessException |
