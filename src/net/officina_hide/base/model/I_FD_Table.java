@@ -8,7 +8,7 @@ package net.officina_hide.base.model;
  */
 public interface I_FD_Table extends I_FD_DB {
 	/** テーブル情報[Table information] */
-	public final String Table_ID = "101";
+	public final long Table_ID = 101;
 	public final String Table_Name = "FD_Table";
 	public final String Table_Comment = "テーブル情報";
 	
@@ -16,7 +16,7 @@ public interface I_FD_Table extends I_FD_DB {
 	public final String COLUMNNAME_FD_Table_ID = Table_Name + "_ID";
 	public final String COMMENT_FD_Table_ID = Table_Comment + "ID";
 	/** テーブル名 */
-	public final String COLUMNNAME_FD_Table_Name = Table_Name;
+	public final String COLUMNNAME_FD_Table_Name = Table_Name + "_Name";
 	public final String COMMENT_FD_Table_Name = "テーブル名";
 	public final int SIZE_FD_Table_Name = 100;
 
@@ -36,4 +36,11 @@ public interface I_FD_Table extends I_FD_DB {
 			+ ")"
 			+ COMMENT + FD_SQ + Table_Comment + FD_SQ
 			+";";
+	public final String SQL_INSERT_FD_TABLE = 
+			"INSERT INTO " + Table_Name
+			+ "("
+			+ COLUMNNAME_FD_Table_ID + "," + COLUMNNAME_FD_Table_Name + ","
+			+ COLUMNNAME_FD_Name + ","
+			+ SQL_COMMON_COLUMN_LIST
+			+ ") Values (?,?,?," + SQL_COMMON_COLUMN_INPUT_LIST + ")";
 }

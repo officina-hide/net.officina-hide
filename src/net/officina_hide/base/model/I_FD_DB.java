@@ -56,5 +56,8 @@ public interface I_FD_DB {
 				+ COMMENT + FD_SQ + COMMENT_Updated + FD_SQ + " "
 			+ "," + COLUMNNAME_UpdatedBy + COLUMN_TYPE_ID
 				+ COMMENT + FD_SQ + COMMENT_UpdatedBy + FD_SQ + " ";
-
+	public final String SQL_COMMON_COLUMN_LIST =
+			COLUMNNAME_Created + "," + COLUMNNAME_CreatedBy + ","
+			+ COLUMNNAME_Updated + "," + COLUMNNAME_UpdatedBy;
+	public final String SQL_COMMON_COLUMN_INPUT_LIST = "?,?,?,?";
 }

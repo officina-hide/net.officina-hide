@@ -4,6 +4,7 @@ import java.util.Date;
 
 import net.officina_hide.base.model.FD_EnvData;
 import net.officina_hide.base.model.FD_Table;
+import net.officina_hide.base.model.I_FD_Table;
 
 /**
  * データベース初期化[database initialization]<br>
@@ -36,9 +37,15 @@ public class FD_DBInitial {
 	 */
 	public void execute() {
 		System.out.println("データベース初期化開始 : "+new Date());
-		//テーブル情報
 		FD_Table table = new FD_Table(env);
+		//テーブル情報テーブル構築
 		table.initialize();
+		//テーブル情報登録
+		X_FD_Table xtable = new X_FD_Table(env, 0);
+		xtable.setFD_Table_ID(I_FD_Table.Table_ID);
+		xtable.setFD_Table_Name(I_FD_Table.Table_Name);
+		xtable.setFD_Name(I_FD_Table.Table_Comment);
+		xtable.save();
 		//カラム情報
 		//採番情報
 		
