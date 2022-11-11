@@ -2,6 +2,7 @@ package net.officina_hide.base.initial;
 
 import java.util.Date;
 
+import net.officina_hide.base.model.FD_Column;
 import net.officina_hide.base.model.FD_EnvData;
 import net.officina_hide.base.model.FD_Table;
 import net.officina_hide.base.model.I_FD_Table;
@@ -38,8 +39,10 @@ public class FD_DBInitial {
 	public void execute() {
 		System.out.println("データベース初期化開始 : "+new Date());
 		FD_Table table = new FD_Table(env);
+		FD_Column column = new FD_Column(env);
 		//テーブル情報テーブル構築
 		table.initialize();
+		column.initialize();
 		//テーブル情報登録
 		X_FD_Table xtable = new X_FD_Table(env, 0);
 		xtable.setFD_Table_ID(I_FD_Table.Table_ID);
