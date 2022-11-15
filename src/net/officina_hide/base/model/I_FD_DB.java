@@ -44,6 +44,8 @@ public interface I_FD_DB {
 	public final String COLUMN_TYPE_VARCHAR = " varchar(n) ";
 	/** SQL用カラム属性 : 日時 */
 	public final String COLUMN_TYPE_DATETIME = " datetime ";
+	/** SQL用カラム属性 : 数値 */
+	public final String COLUMN_TYPE_UNSIGNED_BIGINT = " bigint unsigned ";
 	/** シングルコーテーション[single quotes] */
 	public final String FD_SQ = "'";
 	/** 共通項目追加用SQL[SQL for adding common items] */
@@ -60,4 +62,13 @@ public interface I_FD_DB {
 			COLUMNNAME_Created + "," + COLUMNNAME_CreatedBy + ","
 			+ COLUMNNAME_Updated + "," + COLUMNNAME_UpdatedBy;
 	public final String SQL_COMMON_COLUMN_INPUT_LIST = "?,?,?,?";
+	
+	/** テーブル構築モード : オリジナル */
+	public final String TABLE_CREATE_MODE_ORIGINAL = "Original";
+	/** テーブル構築モード : 汎用 */
+	public final String TABLE_CREATE_MODE_GENERAL = "General";
+	/** テーブル削除用SQL文[SQL statement for table deletion] */
+	public final String SQL_DROP_TABLE = 
+			"DROP TABLE IF EXISTS @tableName";
+
 }

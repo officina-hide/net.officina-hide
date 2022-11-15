@@ -39,4 +39,8 @@ public interface I_FD_Column extends I_FD_DB {
 			+ ")"
 			+ COMMENT + FD_SQ + Table_Comment + FD_SQ
 			+";";
+	
+	/** 採番情報登録 */
+	public final String ADD_FD_Numbering = Table_ID + ","+Table_ID+", 100001, 100001,"
+			+ SQL_COMMON_COLUMN_INPUT_LIST ;
 }

@@ -13,7 +13,7 @@ import java.util.Date;
  * @version 1.00 新規作成[New create]
  * @since 2022/10/22 Ver. 1.00
  */
-public class FD_DB {
+public class FD_DB implements I_FD_DB {
 	
 	/** データベース接続情報[Database connection information] */
 	private static Connection conn = null;
@@ -99,6 +99,33 @@ public class FD_DB {
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
+		}
+	}
+
+	/**
+	 * テーブル構築[table build]<br>
+	 * 指定されテーブル名を持つテーブルを構築する。
+	 * @author officina-hide.net
+	 * @since 2022/11/14 Ver. 1.00
+	 * @param env 環境情報[Environment information]
+	 * @param tableName テーブル名[Table Name]
+	 * @param mode 構築モード
+	 * @param sqlStrings 構築用SQL文[SQL statement for construction]
+	 */
+	public void createTable(FD_EnvData env, String tableName, String mode, String sqlStrings) {
+		PreparedStatement pstmt = null;
+		try {
+			//既登録のテーブルを削除する。[Delete the registered table.]
+			connection(env);
+			pstmt = getConn().prepareStatement(SQL_DROP_TABLE.replaceAll("@tableName", tableName));
+			pstmt.execute();
+			pstmt.close();
+			pstmt = getConn().prepareStatement(sqlStrings);
+			pstmt.execute();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DBClose(pstmt, null);
 		}
 	}
 
