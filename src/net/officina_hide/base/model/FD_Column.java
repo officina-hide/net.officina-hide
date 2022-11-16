@@ -2,6 +2,10 @@ package net.officina_hide.base.model;
 
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.sql.Timestamp;
+import java.util.Date;
+
+import net.officina_hide.base.initial.FD_Numbering;
 
 /**
  * テーブル項目クラス[Table column class]
@@ -25,19 +29,42 @@ public class FD_Column extends FD_DB implements I_FD_Column {
 	}
 
 	/**
-	 * テーブル項目情報初期化[Initialize table column information]
+	 * 情報登録(SQL Value句指定)[Information registration (SQL Value clause specification)]
 	 * @author officina-hide.net
-	 * @since 2022/11/11 Ver. 1.00
+	 * @since 2022/11/16 Ver. 1.00
+	 * @param tableId テーブル情報ID[Table information ID]
+	 * @param value SQL値部分[SQL value part]<br>
+	 * @since 2022/11/16 Ver. 1.00
 	 */
-	public void initialize() {
-		connection(env);
+	public void addData(long tableId, String value) {
 		PreparedStatement pstmt = null;
+		StringBuffer sql = new StringBuffer();
+
+		sql.append("INSERT INTO ").append(Table_Name).append("(");
+		sql.append(COLUMNNAME_FD_Column_ID).append(",");
+		sql.append(COLUMNNAME_FD_Table_ID).append(",");
+		sql.append(COLUMNNAME_FD_Column_Name).append(",");
+		sql.append(COLUMNNAME_FD_Name).append(",");
+		sql.append(SQL_COMMON_COLUMN_LIST);
+		sql.append(")");
+		sql.append(" VALUES ").append("(");
+		sql.append(value);
+		sql.append(")");
+		
 		try {
-			pstmt = getConn().prepareStatement(SQL_DROP_FD_TABLE);
-			pstmt.execute();
-			DBClose(pstmt, null);
-			pstmt = getConn().prepareStatement(SQL_CREATE_FD_COLUMN);
-			pstmt.execute();
+			connection(env);
+			pstmt = getConn().prepareStatement(sql.toString());
+			//採番
+			FD_Numbering num = new FD_Numbering(env);
+			pstmt.setLong(1, num.getNewKey(tableId));
+			pstmt.setTimestamp(2, new Timestamp(new Date().getTime()));
+			pstmt.setLong(3, 100);
+			pstmt.setTimestamp(4, new Timestamp(new Date().getTime()));
+			pstmt.setLong(5, 100);
+			int rs = pstmt.executeUpdate();
+			if(rs != 1) {
+				System.out.println("Insert Error : "+sql.toString());
+			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {

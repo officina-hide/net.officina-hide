@@ -21,8 +21,6 @@ public interface I_FD_Table extends I_FD_DB {
 	public final int SIZE_FD_Table_Name = 100;
 
 	/** テーブル情報構築用SQL[SQL for building table information] */
-	public final String SQL_DROP_FD_TABLE = 
-			"DROP TABLE IF EXISTS " + Table_Name + " ;";
 	public final String SQL_CREATE_FD_TABLE = 
 			"CREATE TABLE IF NOT EXISTS " + Table_Name + " ("
 			+ COLUMNNAME_FD_Table_ID + COLUMN_TYPE_ID_KEY 
@@ -36,15 +34,16 @@ public interface I_FD_Table extends I_FD_DB {
 			+ ")"
 			+ COMMENT + FD_SQ + Table_Comment + FD_SQ
 			+";";
-	public final String SQL_INSERT_FD_TABLE = 
-			"INSERT INTO " + Table_Name
-			+ "("
-			+ COLUMNNAME_FD_Table_ID + "," + COLUMNNAME_FD_Table_Name + ","
-			+ COLUMNNAME_FD_Name + ","
-			+ SQL_COMMON_COLUMN_LIST
-			+ ") Values (?,?,?," + SQL_COMMON_COLUMN_INPUT_LIST + ")";
 	
 	/** 採番情報登録 */
 	public final String ADD_FD_Numbering = Table_ID + ","+Table_ID+", 1001, 1001,"
 			+ SQL_COMMON_COLUMN_INPUT_LIST ;
+	/** テーブル情報登録 */
+	public final String ADD_FD_Table = Table_ID + "," + FD_SQ + Table_Name + FD_SQ + ","
+			+ FD_SQ + Table_Comment + FD_SQ + ","
+			+ SQL_COMMON_COLUMN_INPUT_LIST;
+	/** テーブル項目情報登録 */
+	public final String ADD_COLUMN_FD_TABLE_ID = "?" + "," + Table_ID + ","
+			+ FD_SQ + COLUMNNAME_FD_Table_ID + FD_SQ + ","
+			+ SQL_COMMON_COLUMN_INPUT_LIST;
 }

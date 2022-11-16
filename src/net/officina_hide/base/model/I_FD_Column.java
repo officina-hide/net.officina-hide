@@ -25,8 +25,8 @@ public interface I_FD_Column extends I_FD_DB {
 	public final int SIZE_FD_Column_Name = 100;
 	
 	/** テーブル項目情報構築用SQL[SQL for building table column information] */
-	public final String SQL_DROP_FD_TABLE = 
-			"DROP TABLE IF EXISTS " + Table_Name + " ;";
+//	public final String SQL_DROP_FD_TABLE = 
+//			"DROP TABLE IF EXISTS " + Table_Name + " ;";
 	public final String SQL_CREATE_FD_COLUMN = 
 			"CREATE TABLE IF NOT EXISTS " + Table_Name + " ("
 			+ COLUMNNAME_FD_Column_ID + COLUMN_TYPE_ID_KEY
@@ -43,4 +43,9 @@ public interface I_FD_Column extends I_FD_DB {
 	/** 採番情報登録 */
 	public final String ADD_FD_Numbering = Table_ID + ","+Table_ID+", 100001, 100001,"
 			+ SQL_COMMON_COLUMN_INPUT_LIST ;
+	
+	/** テーブル情報登録 */
+	public final String ADD_FD_Table = Table_ID + "," + FD_SQ + Table_Name + FD_SQ + ","
+			+ FD_SQ + Table_Comment + FD_SQ + ","
+			+ SQL_COMMON_COLUMN_INPUT_LIST;
 }

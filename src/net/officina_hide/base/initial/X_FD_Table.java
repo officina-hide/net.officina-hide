@@ -46,25 +46,25 @@ public class X_FD_Table extends FD_DB implements I_FD_Table {
 	public void save() {
 		PreparedStatement pstmt = null;
 		connection(env);
-		try {
-			pstmt = getConn().prepareStatement(SQL_INSERT_FD_TABLE);
-			pstmt.setLong(1, getFD_Table_ID());
-			pstmt.setString(2, getFD_Table_Name());
-			pstmt.setString(3, getFD_Name());
-			Timestamp currentDate = new Timestamp(new Date().getTime());
-			pstmt.setTimestamp(4, currentDate);
-			pstmt.setLong(5, 100);
-			pstmt.setTimestamp(6, currentDate);
-			pstmt.setLong(7, 100);
-			int rs = pstmt.executeUpdate();
-			if(rs != 1) {
-				System.out.println("Data insert error!!");
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			DBClose(pstmt, null);
-		}
+//		try {
+//			pstmt = getConn().prepareStatement(SQL_INSERT_FD_TABLE);
+//			pstmt.setLong(1, getFD_Table_ID());
+//			pstmt.setString(2, getFD_Table_Name());
+//			pstmt.setString(3, getFD_Name());
+//			Timestamp currentDate = new Timestamp(new Date().getTime());
+//			pstmt.setTimestamp(4, currentDate);
+//			pstmt.setLong(5, 100);
+//			pstmt.setTimestamp(6, currentDate);
+//			pstmt.setLong(7, 100);
+//			int rs = pstmt.executeUpdate();
+//			if(rs != 1) {
+//				System.out.println("Data insert error!!");
+//			}
+//		} catch (SQLException e) {
+//			e.printStackTrace();
+//		} finally {
+//			DBClose(pstmt, null);
+//		}
 	}
 
 	public long getFD_Table_ID() {
