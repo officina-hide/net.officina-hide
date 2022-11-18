@@ -56,11 +56,14 @@ public class FD_Column extends FD_DB implements I_FD_Column {
 			pstmt = getConn().prepareStatement(sql.toString());
 			//採番
 			FD_Numbering num = new FD_Numbering(env);
-			pstmt.setLong(1, num.getNewKey(tableId));
-			pstmt.setTimestamp(2, new Timestamp(new Date().getTime()));
-			pstmt.setLong(3, 100);
-			pstmt.setTimestamp(4, new Timestamp(new Date().getTime()));
-			pstmt.setLong(5, 100);
+			long id = num.getNewKey(I_FD_Column.Table_ID);
+			System.out.println(id);
+			pstmt.setLong(1, id);
+			pstmt.setLong(2, tableId);
+			pstmt.setTimestamp(3, new Timestamp(new Date().getTime()));
+			pstmt.setLong(4, 100);
+			pstmt.setTimestamp(5, new Timestamp(new Date().getTime()));
+			pstmt.setLong(6, 100);
 			int rs = pstmt.executeUpdate();
 			if(rs != 1) {
 				System.out.println("Insert Error : "+sql.toString());

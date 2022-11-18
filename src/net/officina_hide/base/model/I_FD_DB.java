@@ -21,19 +21,20 @@ public interface I_FD_DB {
 	
 	/** 共通項目 : 登録日 */
 	public final String COLUMNNAME_Created = "created";
-	public final String COMMENT_Created = "登録日";
+	public final String NAME_Created = "登録日";
 	/** 共通項目 : 登録者ID */
 	public final String COLUMNNAME_CreatedBy = "createdBy";
-	public final String COMMENT_CreatedBy = "登録者ID";
+	public final String NAME_CreatedBy = "登録者ID";
 	/** 共通項目 : 更新日 */
 	public final String COLUMNNAME_Updated = "updated";
-	public final String COMMENT_Updated = "更新日";
+	public final String NAME_Updated = "更新日";
 	/** 共通項目 : 更新者ID */
 	public final String COLUMNNAME_UpdatedBy = "updatedBy";
-	public final String COMMENT_UpdatedBy = "更新者ID";
+	public final String NAME_UpdatedBy = "更新者ID";
 	/** 汎用項目 : 名前 */
 	public final String COLUMNNAME_FD_Name = "FD_Name";
-	public final String COMMENT_FD_Name = "名前";
+	public final String NAME_FD_Name = "名前";
+	public final int SIZE_FD_Name = 200;
 	
 	/** SQL用カラム属性設定[Column attribute setting for SQL] */
 	public final String COLUMN_TYPE_ID_KEY = " bigint unsigned NOT NULL PRIMARY KEY ";
@@ -51,13 +52,13 @@ public interface I_FD_DB {
 	/** 共通項目追加用SQL[SQL for adding common items] */
 	public final String SQL_CREATE_COMMON_COLUMN =
 			COLUMNNAME_Created + COLUMN_TYPE_DATETIME
-				+ COMMENT + FD_SQ + COMMENT_Created + FD_SQ + " "
+				+ COMMENT + FD_SQ + NAME_Created + FD_SQ + " "
 			+ "," + COLUMNNAME_CreatedBy + COLUMN_TYPE_ID
-				+ COMMENT + FD_SQ + COMMENT_CreatedBy + FD_SQ + " "
+				+ COMMENT + FD_SQ + NAME_CreatedBy + FD_SQ + " "
 			+ "," + COLUMNNAME_Updated + COLUMN_TYPE_DATETIME
-				+ COMMENT + FD_SQ + COMMENT_Updated + FD_SQ + " "
+				+ COMMENT + FD_SQ + NAME_Updated + FD_SQ + " "
 			+ "," + COLUMNNAME_UpdatedBy + COLUMN_TYPE_ID
-				+ COMMENT + FD_SQ + COMMENT_UpdatedBy + FD_SQ + " ";
+				+ COMMENT + FD_SQ + NAME_UpdatedBy + FD_SQ + " ";
 	public final String SQL_COMMON_COLUMN_LIST =
 			COLUMNNAME_Created + "," + COLUMNNAME_CreatedBy + ","
 			+ COLUMNNAME_Updated + "," + COLUMNNAME_UpdatedBy;
@@ -70,5 +71,10 @@ public interface I_FD_DB {
 	/** テーブル削除用SQL文[SQL statement for table deletion] */
 	public final String SQL_DROP_TABLE = 
 			"DROP TABLE IF EXISTS @tableName";
+	/** 共通項目カラム情報追加用SQL[SQL for adding common item column information] */
+	public final String ADD_COMMON_COLUMN_Created = "?" + "," + "?" + "," 
+			+ FD_SQ + COLUMNNAME_Created + FD_SQ + ","
+			+ FD_SQ + NAME_Created + FD_SQ + ","
+			+ SQL_COMMON_COLUMN_INPUT_LIST;
 
 }

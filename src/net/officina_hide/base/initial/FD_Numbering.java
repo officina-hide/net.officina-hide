@@ -83,7 +83,7 @@ public class FD_Numbering extends FD_DB implements I_FD_Numbering {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		try {
-			String sql = "SELECT * FROM " + Table_Name
+			String sql = "SELECT * FROM " + Table_Name + " "
 					+ "WHERE " + COLUMNNAME_FD_Table_ID + " = ? ";
 			connection(env);
 			pstmt = getConn().prepareStatement(sql);
@@ -102,6 +102,15 @@ public class FD_Numbering extends FD_DB implements I_FD_Numbering {
 					+ COLUMNNAME_Updated + " = ? " + ","
 					+ COLUMNNAME_UpdatedBy + " = ? "
 					+ "WHERE " + COLUMNNAME_FD_Numbering_ID + " =  ? ";
+			pstmt = getConn().prepareStatement(sql);
+			pstmt.setLong(1, id + 1);
+			pstmt.setTimestamp(2, new Timestamp(new Date().getTime()));
+			pstmt.setLong(3, 100);
+			pstmt.setLong(4, numberingId);
+			int cnt = pstmt.executeUpdate();
+			if(cnt != 1) {
+				System.out.println("Error!! : Update FD_Numbering");
+			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {

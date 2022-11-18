@@ -14,22 +14,22 @@ public interface I_FD_Table extends I_FD_DB {
 	
 	/** テーブル情報ID */
 	public final String COLUMNNAME_FD_Table_ID = Table_Name + "_ID";
-	public final String COMMENT_FD_Table_ID = Table_Comment + "ID";
+	public final String NAME_FD_Table_ID = Table_Comment + "ID";
 	/** テーブル名 */
 	public final String COLUMNNAME_FD_Table_Name = Table_Name + "_Name";
-	public final String COMMENT_FD_Table_Name = "テーブル名";
+	public final String Name_FD_Table_Name = "テーブル名";
 	public final int SIZE_FD_Table_Name = 100;
 
 	/** テーブル情報構築用SQL[SQL for building table information] */
 	public final String SQL_CREATE_FD_TABLE = 
 			"CREATE TABLE IF NOT EXISTS " + Table_Name + " ("
 			+ COLUMNNAME_FD_Table_ID + COLUMN_TYPE_ID_KEY 
-				+ COMMENT + FD_SQ + COMMENT_FD_Table_ID + FD_SQ
+				+ COMMENT + FD_SQ + NAME_FD_Table_ID + FD_SQ
 			+ "," + COLUMNNAME_FD_Table_Name 
 				+ COLUMN_TYPE_VARCHAR.replaceAll("n", Integer.toString(SIZE_FD_Table_Name))
-				+ COMMENT + FD_SQ + COMMENT_FD_Table_Name + FD_SQ + " "
+				+ COMMENT + FD_SQ + Name_FD_Table_Name + FD_SQ + " "
 			+ "," + COLUMNNAME_FD_Name + COLUMN_TYPE_VARCHAR.replaceAll("n", "200")
-				+ COMMENT + FD_SQ + COMMENT_FD_Name + FD_SQ + " "
+				+ COMMENT + FD_SQ + NAME_FD_Name + FD_SQ + " "
 			+ "," + SQL_CREATE_COMMON_COLUMN
 			+ ")"
 			+ COMMENT + FD_SQ + Table_Comment + FD_SQ
@@ -43,7 +43,12 @@ public interface I_FD_Table extends I_FD_DB {
 			+ FD_SQ + Table_Comment + FD_SQ + ","
 			+ SQL_COMMON_COLUMN_INPUT_LIST;
 	/** テーブル項目情報登録 */
-	public final String ADD_COLUMN_FD_TABLE_ID = "?" + "," + Table_ID + ","
+	public final String ADD_COLUMN_FD_TABLE_ID = "?" + "," + "?" + ","
 			+ FD_SQ + COLUMNNAME_FD_Table_ID + FD_SQ + ","
+			+ FD_SQ + NAME_FD_Table_ID + FD_SQ + ","
+			+ SQL_COMMON_COLUMN_INPUT_LIST;
+	public final String ADD_COLUMN_FD_TABLE_Name = "?" + "," + "?" + ","
+			+ FD_SQ + COLUMNNAME_FD_Table_Name + FD_SQ + ","
+			+ FD_SQ + Name_FD_Table_Name + FD_SQ + ","
 			+ SQL_COMMON_COLUMN_INPUT_LIST;
 }

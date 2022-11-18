@@ -68,6 +68,8 @@ public class FD_Table extends FD_DB implements I_FD_Table {
 	public void addColumnData() {
 		FD_Column column = new FD_Column(env);
 		column.addData(Table_ID, ADD_COLUMN_FD_TABLE_ID);
+		column.addData(Table_ID, ADD_COLUMN_FD_TABLE_Name);
+		column.addData(Table_ID, ADD_COMMON_COLUMN_Created);
 	}
 
 }

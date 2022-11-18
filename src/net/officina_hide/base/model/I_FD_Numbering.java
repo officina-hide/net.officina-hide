@@ -18,7 +18,7 @@ public interface I_FD_Numbering extends I_FD_DB {
 	public final String COMMENT_FD_Numbering_ID = Table_Comment + "ID";
 	/** テーブル情報ID */
 	public final String COLUMNNAME_FD_Table_ID = I_FD_Table.COLUMNNAME_FD_Table_ID;
-	public final String COMMENT_FD_Table_ID = I_FD_Table.COMMENT_FD_Table_ID;
+	public final String COMMENT_FD_Table_ID = I_FD_Table.NAME_FD_Table_ID;
 	/** 採番初期値[Initial value for numbering] */
 	public final String COLUMNNAME_FD_InitialNumber = "FD_InitialNumber";
 	public final String COMMENT_FD_InitialNumber = "採番初期値";
