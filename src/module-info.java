@@ -8,4 +8,5 @@ module net.officina_hide {
 	requires java.sql;
 	
 	opens net.officina_hide.base.initial;
+	opens net.officina_hide.project.tools;
 }

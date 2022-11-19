@@ -1,10 +1,5 @@
 package net.officina_hide.base.initial;
 
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
-import java.sql.Timestamp;
-import java.util.Date;
-
 import net.officina_hide.base.model.FD_DB;
 import net.officina_hide.base.model.FD_EnvData;
 import net.officina_hide.base.model.I_FD_Table;
@@ -44,7 +39,7 @@ public class X_FD_Table extends FD_DB implements I_FD_Table {
 	 * @since 2022/11/10 Ver. 1.00
 	 */
 	public void save() {
-		PreparedStatement pstmt = null;
+//		PreparedStatement pstmt = null;
 		connection(env);
 //		try {
 //			pstmt = getConn().prepareStatement(SQL_INSERT_FD_TABLE);
