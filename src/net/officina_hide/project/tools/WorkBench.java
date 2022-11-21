@@ -7,6 +7,7 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
+import javafx.stage.Screen;
 import javafx.stage.Stage;
 
 /**
@@ -33,7 +34,7 @@ public class WorkBench extends Application {
 		mainBox.setStroke(Color.DARKGRAY);
 		mainBox.setFill(Color.WHITE);
 		pane.getChildren().add(mainBox);
-
+		
 		Scene scene = new Scene(scPane);
 		stage.setScene(scene);
 		stage.show();

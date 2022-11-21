@@ -41,7 +41,6 @@ public class FD_DBInitial extends FD_DB {
 	public void execute() {
 		System.out.println("データベース初期化開始 : "+new Date());
 		FD_Table table = new FD_Table(env);
-//		FD_Column column = new FD_Column(env);
 		FD_Numbering num = new FD_Numbering(env);
 		//採番情報テーブル構築
 		createTable(env, I_FD_Numbering.Table_Name, TABLE_CREATE_MODE_ORIGINAL,

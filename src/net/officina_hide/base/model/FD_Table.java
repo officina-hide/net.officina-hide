@@ -70,6 +70,9 @@ public class FD_Table extends FD_DB implements I_FD_Table {
 		column.addData(Table_ID, ADD_COLUMN_FD_TABLE_ID);
 		column.addData(Table_ID, ADD_COLUMN_FD_TABLE_Name);
 		column.addData(Table_ID, ADD_COMMON_COLUMN_Created);
+		column.addData(Table_ID, ADD_COMMON_COLUMN_CreatedBy);
+		column.addData(Table_ID, ADD_COMMON_COLUMN_Updated);
+		column.addData(Table_ID, ADD_COMMON_COLUMN_UpdatedBy);
 	}
 
 }

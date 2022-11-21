@@ -57,7 +57,6 @@ public class FD_Column extends FD_DB implements I_FD_Column {
 			//採番
 			FD_Numbering num = new FD_Numbering(env);
 			long id = num.getNewKey(I_FD_Column.Table_ID);
-			System.out.println(id);
 			pstmt.setLong(1, id);
 			pstmt.setLong(2, tableId);
 			pstmt.setTimestamp(3, new Timestamp(new Date().getTime()));
