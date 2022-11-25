@@ -19,15 +19,31 @@ import javafx.stage.Stage;
  */
 public class WorkBench extends Application {
 
+	/** システム画面サイズ : 幅 */
+	private double dispWidth;
+	/** システム画面サイズ : 高さ */
+	private double dispHeight;
+	/** 表示画面サイズ : 幅 */
+	private double iniWidth;
+	/** 表示画面サイズ : 高さ */
+	private double iniHeight;
+	
 	@Override
 	public void start(Stage stage) throws Exception {
 		ScrollPane  scPane = new ScrollPane();
 		Pane pane = new Pane();
 		pane.setPadding(new Insets(10, 10, 10, 10));
 		scPane.setContent(pane);
-		scPane.setFitToHeight(true);
 		
-		Rectangle mainBox = new Rectangle(300, 200);
+		//システム画面のサイズ取得
+		dispWidth = Screen.getPrimary().getBounds().getWidth();
+		dispHeight = Screen.getPrimary().getBounds().getHeight();
+		System.out.println("画面サイズ : "+dispWidth+"×"+dispHeight);
+		//表示画面サイス計算（システム画面の80%を初期値にする）
+		iniWidth = Math.abs(dispWidth * 0.8);
+		iniHeight = Math.abs(dispHeight * 0.8);
+		
+		Rectangle mainBox = new Rectangle(iniWidth, iniHeight);
 		mainBox.setX(10);
 		mainBox.setY(10);
 		mainBox.setStrokeWidth(2);

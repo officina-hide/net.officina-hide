@@ -88,5 +88,10 @@ public interface I_FD_DB {
 			+ FD_SQ + COLUMNNAME_UpdatedBy + FD_SQ + ","
 			+ FD_SQ + NAME_UpdatedBy + FD_SQ + ","
 			+ SQL_COMMON_COLUMN_INPUT_LIST;
+	
+	/** 参照グループ */
+	public final String REFERENCE_GROUP_COLUMN_TYPE_ID = "1001";
+	public final String REFERENCE_GROUP_COLUMN_TYPE_NAME = "columnType";
+	public final String REFERENCE_GROUP_COLUMN_TYPE_COMMENT = "項目属性";
 
 }

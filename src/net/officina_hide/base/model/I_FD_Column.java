@@ -23,6 +23,7 @@ public interface I_FD_Column extends I_FD_DB {
 	public final String COLUMNNAME_FD_Column_Name = Table_Name + "_Name";
 	public final String COMMENT_FD_Column_Name = "テーブル項目名";
 	public final int SIZE_FD_Column_Name = 100;
+	/** 項目種別ID(参照ID:Group 項目属性) */
 	
 	/** テーブル項目情報構築用SQL[SQL for building table column information] */
 	public final String SQL_CREATE_FD_COLUMN = 

@@ -5,8 +5,6 @@ import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.util.Date;
 
-import net.officina_hide.base.initial.FD_Numbering;
-
 /**
  * テーブル項目クラス[Table column class]
  * @author officina-hide.net
