@@ -39,6 +39,8 @@ public interface I_FD_DB {
 	/** SQL用カラム属性設定[Column attribute setting for SQL] */
 	public final String COLUMN_TYPE_ID_KEY = " bigint unsigned NOT NULL PRIMARY KEY ";
 	public final String COLUMN_TYPE_ID = " bigint unsigned ";
+	public final String COLUMN_TYPE_ID_NAME = "ID";
+	public final String COLUMN_TYPE_ID_COMMENT = "情報ID";
 	/** SQL用コメント[Comments for SQL] */
 	public final String COMMENT = " COMMENT ";
 	/** SQL用カラム属性 : 文字列 */
@@ -90,7 +92,7 @@ public interface I_FD_DB {
 			+ SQL_COMMON_COLUMN_INPUT_LIST;
 	
 	/** 参照グループ */
-	public final String REFERENCE_GROUP_COLUMN_TYPE_ID = "1001";
+	public final long REFERENCE_GROUP_COLUMN_TYPE_ID = 1001;
 	public final String REFERENCE_GROUP_COLUMN_TYPE_NAME = "columnType";
 	public final String REFERENCE_GROUP_COLUMN_TYPE_COMMENT = "項目属性";
 

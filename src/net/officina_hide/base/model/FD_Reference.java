@@ -32,19 +32,27 @@ public class FD_Reference extends FD_DB implements I_FD_Reference {
 	 * @since 2022/11/24 Ver. 1.00
 	 */
 	public void addRefGroupData() {
-		addData(ADD_Reference_Group_ColumnType);
+		addData(REFERENCE_GROUP_COLUMN_TYPE_ID, ADD_Reference_Group_ColumnType);
+		addData(0, ADD_Reference_ColumnType_ID);
 	}
 
 	/**
 	 * 情報登録[Save data]
+	 * @param value 
 	 * @param refrenceId 参照情報ID
 	 * @param referenceName 参照名
 	 * @param name 名前
 	 * @param refGroupId 参照グループ情報ID
 	 */
-	private void addData(String value) {
+	private void addData(long id, String value) {
 		PreparedStatement pstmt = null;
 		StringBuffer sql = new StringBuffer();
+		
+		if(id == 0) {
+			//採番
+			FD_Numbering num = new FD_Numbering(env);
+			id = num.getNewKey(Table_ID);
+		}
 		
 		sql.append("INSERT INTO ").append(Table_Name).append("(");
 		sql.append(COLUMNNAME_FD_Reference_ID).append(",");
@@ -60,10 +68,11 @@ public class FD_Reference extends FD_DB implements I_FD_Reference {
 		try {
 			connection(env);
 			pstmt = getConn().prepareStatement(sql.toString());
-			pstmt.setTimestamp(1, new Timestamp(new Date().getTime()));
-			pstmt.setLong(2, 100);
-			pstmt.setTimestamp(3, new Timestamp(new Date().getTime()));
-			pstmt.setLong(4, 100);
+			pstmt.setLong(1, id);
+			pstmt.setTimestamp(2, new Timestamp(new Date().getTime()));
+			pstmt.setLong(3, 100);
+			pstmt.setTimestamp(4, new Timestamp(new Date().getTime()));
+			pstmt.setLong(5, 100);
 			int rs = pstmt.executeUpdate();
 			if(rs != 1) {
 				System.out.println("Insert Error : "+sql.toString());

@@ -53,10 +53,17 @@ public interface I_FD_Reference extends I_FD_DB {
 	public final String ADD_FD_Numbering = Table_ID + ","+Table_ID+", 100001, 100001,"
 			+ SQL_COMMON_COLUMN_INPUT_LIST ;
 	
-	public final String ADD_Reference_Group_ColumnType = 
-			REFERENCE_GROUP_COLUMN_TYPE_ID + ","
+	/** 参照グループ登録 : テーブル項属性 */
+	public final String ADD_Reference_Group_ColumnType = "?,"
+//			REFERENCE_GROUP_COLUMN_TYPE_ID + ","
 			+ FD_SQ + REFERENCE_GROUP_COLUMN_TYPE_NAME + FD_SQ + ","
 			+ FD_SQ + REFERENCE_GROUP_COLUMN_TYPE_COMMENT + FD_SQ + ","
 			+ "0" + ","
+			+ SQL_COMMON_COLUMN_INPUT_LIST;
+	/** 参照 : テーブル項目属性 : ID */
+	public final String ADD_Reference_ColumnType_ID = "?,"
+			+ FD_SQ +COLUMN_TYPE_ID_NAME + FD_SQ + ","
+			+ FD_SQ + COLUMN_TYPE_ID_COMMENT + FD_SQ + ","
+			+ REFERENCE_GROUP_COLUMN_TYPE_ID + ","
 			+ SQL_COMMON_COLUMN_INPUT_LIST;
 }
