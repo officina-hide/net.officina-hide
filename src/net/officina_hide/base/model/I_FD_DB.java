@@ -36,21 +36,29 @@ public interface I_FD_DB {
 	public final String NAME_FD_Name = "名前";
 	public final int SIZE_FD_Name = 200;
 	
+	/** SQL用コメント[Comments for SQL] */
+	public final String COMMENT = " COMMENT ";
+	/** シングルコーテーション[single quotes] */
+	public final String FD_SQ = "'";
+
 	/** SQL用カラム属性設定[Column attribute setting for SQL] */
 	public final String COLUMN_TYPE_ID_KEY = " bigint unsigned NOT NULL PRIMARY KEY ";
 	public final String COLUMN_TYPE_ID = " bigint unsigned ";
 	public final String COLUMN_TYPE_ID_NAME = "ID";
 	public final String COLUMN_TYPE_ID_COMMENT = "情報ID";
-	/** SQL用コメント[Comments for SQL] */
-	public final String COMMENT = " COMMENT ";
 	/** SQL用カラム属性 : 文字列 */
 	public final String COLUMN_TYPE_VARCHAR = " varchar(n) ";
+	public final String COLUMN_TYPE_VARCHAR_NAME = "Varchar";
+	public final String COLUMN_TYPE_VARCHAR_COMMENT = "文字列";
 	/** SQL用カラム属性 : 日時 */
 	public final String COLUMN_TYPE_DATETIME = " datetime ";
+	public final String COLUMN_TYPE_DATETIME_NAME = "DateTime";
+	public final String COLUMN_TYPE_DATETIME_COMMENT = "日時";
 	/** SQL用カラム属性 : 数値 */
 	public final String COLUMN_TYPE_UNSIGNED_BIGINT = " bigint unsigned ";
-	/** シングルコーテーション[single quotes] */
-	public final String FD_SQ = "'";
+	public final String COLUMN_TYPE_UNSIGNED_BIGINT_NAME = "BigInt Unsigned";
+	public final String COLUMN_TYPE_UNSIGNED_BIGINT_COMMENT = "符号無し整数";
+	
 	/** 共通項目追加用SQL[SQL for adding common items] */
 	public final String SQL_CREATE_COMMON_COLUMN =
 			COLUMNNAME_Created + COLUMN_TYPE_DATETIME

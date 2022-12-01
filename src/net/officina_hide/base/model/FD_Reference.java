@@ -31,9 +31,12 @@ public class FD_Reference extends FD_DB implements I_FD_Reference {
 	 * @author officina-hide.net
 	 * @since 2022/11/24 Ver. 1.00
 	 */
-	public void addRefGroupData() {
+	public void addReferenceData() {
 		addData(REFERENCE_GROUP_COLUMN_TYPE_ID, ADD_Reference_Group_ColumnType);
 		addData(0, ADD_Reference_ColumnType_ID);
+		addData(0, ADD_Reference_ColumnType_Verchar);
+		addData(0, ADD_Reference_ColumnType_DateTime);
+		addData(0, ADD_Reference_ColumnType_UNSIGNED_BIGINT);
 	}
 
 	/**

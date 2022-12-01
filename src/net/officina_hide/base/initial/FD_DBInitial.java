@@ -63,7 +63,7 @@ public class FD_DBInitial extends FD_DB {
 		//参照情報構築
 		createTable(env, I_FD_Reference.Table_Name, TABLE_CREATE_MODE_ORIGINAL,
 				I_FD_Reference.SQL_CREATE_FD_Reference);
-		ref.addRefGroupData();
+		ref.addReferenceData();
 		//カラム情報構築
 		createTable(env, I_FD_Column.Table_Name, TABLE_CREATE_MODE_ORIGINAL,
 				I_FD_Column.SQL_CREATE_FD_COLUMN);
