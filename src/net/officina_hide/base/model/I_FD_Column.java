@@ -24,6 +24,8 @@ public interface I_FD_Column extends I_FD_DB {
 	public final String COMMENT_FD_Column_Name = "テーブル項目名";
 	public final int SIZE_FD_Column_Name = 100;
 	/** 項目種別ID(参照ID:Group 項目属性) */
+	public final String COLUMNNAME_FD_ColumnType_ID = "FD_ColumnType_ID";
+	public final String COMMENT_FD_ColumnType_ID = "項目属性ID";
 	
 	/** テーブル項目情報構築用SQL[SQL for building table column information] */
 	public final String SQL_CREATE_FD_COLUMN = 
@@ -36,6 +38,8 @@ public interface I_FD_Column extends I_FD_DB {
 				+ COMMENT + FD_SQ + COMMENT_FD_Column_Name + FD_SQ + " "
 			+ "," + COLUMNNAME_FD_Name + COLUMN_TYPE_VARCHAR.replaceAll("n", Integer.toString(SIZE_FD_Name)) + " "
 				+ COMMENT + FD_SQ + NAME_FD_Name + FD_SQ + " "
+			+ "," + COLUMNNAME_FD_ColumnType_ID + COLUMN_TYPE_ID
+				+ COMMENT + FD_SQ + COMMENT_FD_ColumnType_ID + FD_SQ + " "
 			+ "," + SQL_CREATE_COMMON_COLUMN
 			+ ")"
 			+ COMMENT + FD_SQ + Table_Comment + FD_SQ
