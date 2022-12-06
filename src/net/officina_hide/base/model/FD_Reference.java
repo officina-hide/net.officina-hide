@@ -1,6 +1,7 @@
 package net.officina_hide.base.model;
 
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.util.Date;
@@ -85,6 +86,41 @@ public class FD_Reference extends FD_DB implements I_FD_Reference {
 		} finally {
 			DBClose(pstmt, null);
 		}
+	}
+
+	/**
+	 * 項目属性名から項目属性ID取得[Get item attribute ID from item attribute name]<br>
+	 * @author officina-hide.net
+	 * @since 2022/12/06 Ver. 1.00
+	 * @param columnTypeName 項目属性名
+	 */
+	public long getID(String columnTypeName) {
+		long id = 0;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		StringBuffer sql = new StringBuffer();
+		sql.append("SELECT ").append(COLUMNNAME_FD_Reference_ID).append(" FROM ")
+			.append(Table_Name).append(" ");
+		sql.append("WHERE ").append(COLUMNNAME_FD_Reference_Name).append(" = ? ");
+		
+		try {
+			connection(env);
+			pstmt = getConn().prepareStatement(sql.toString());
+			pstmt.setString(1, columnTypeName);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				id = rs.getLong(COLUMNNAME_FD_Reference_ID);
+			} else {
+				System.out.println("Reference ID Get Error : "+columnTypeName);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DBClose(pstmt, rs);
+		}
+		
+		return id;
 	}
 
 }

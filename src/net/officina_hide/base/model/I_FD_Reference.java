@@ -61,8 +61,8 @@ public interface I_FD_Reference extends I_FD_DB {
 			+ SQL_COMMON_COLUMN_INPUT_LIST;
 	/** 参照 : テーブル項目属性 : ID */
 	public final String ADD_Reference_ColumnType_ID = "?,"
-			+ FD_SQ +COLUMN_TYPE_ID_NAME + FD_SQ + ","
-			+ FD_SQ + COLUMN_TYPE_ID_COMMENT + FD_SQ + ","
+			+ FD_SQ +COLUMN_TYPE_ID_KEY_NAME + FD_SQ + ","
+			+ FD_SQ + COLUMN_TYPE_ID_KEY_COMMENT + FD_SQ + ","
 			+ REFERENCE_GROUP_COLUMN_TYPE_ID + ","
 			+ SQL_COMMON_COLUMN_INPUT_LIST;
 	/** 参照 : テーブル項目属性 : 文字列 */

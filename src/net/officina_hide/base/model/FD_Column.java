@@ -33,6 +33,7 @@ public class FD_Column extends FD_DB implements I_FD_Column {
 	 * @param tableId テーブル情報ID[Table information ID]
 	 * @param value SQL値部分[SQL value part]<br>
 	 * @since 2022/11/16 Ver. 1.00
+	 * @deprecated
 	 */
 	public void addData(long tableId, String value) {
 		PreparedStatement pstmt = null;
@@ -65,6 +66,60 @@ public class FD_Column extends FD_DB implements I_FD_Column {
 			if(rs != 1) {
 				System.out.println("Insert Error : "+sql.toString());
 			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DBClose(pstmt, null);
+		}
+	}
+
+	/**
+	 * 情報登録(SQL Value句指定)[Information registration (SQL Value clause specification)]
+	 * @author officina-hide.net
+	 * @since 2022/11/16 Ver. 1.00 新規作成[New create]
+	 * @since 2022/12/05 Ver. 1.01 項目属性追加
+	 * @param tableId テーブル情報ID[Table information ID]
+	 * @param value SQL値部分[SQL value part]<br>
+	 * @param columnType 項目属性名[Attribute name]
+	 */
+	public void addData(long tableId, String value, String columnType) {
+		PreparedStatement pstmt = null;
+		StringBuffer sql = new StringBuffer();
+
+		//項目属性ID取得
+		FD_Reference ref = new FD_Reference(env);
+		long columnTypeId = ref.getID(columnType);
+		//採番
+		FD_Numbering num = new FD_Numbering(env);
+		long id = num.getNewKey(I_FD_Column.Table_ID);
+		
+		sql.append("INSERT INTO ").append(Table_Name).append("(");
+		sql.append(COLUMNNAME_FD_Column_ID).append(",");
+		sql.append(COLUMNNAME_FD_Table_ID).append(",");
+		sql.append(COLUMNNAME_FD_Column_Name).append(",");
+		sql.append(COLUMNNAME_FD_Name).append(",");
+		sql.append(COLUMNNAME_FD_ColumnType_ID).append(",");
+		sql.append(SQL_COMMON_COLUMN_LIST);
+		sql.append(")");
+		sql.append(" VALUES ").append("(");
+		sql.append(value);
+		sql.append(")");
+		
+		try {
+			connection(env);
+			pstmt = getConn().prepareStatement(sql.toString());
+			pstmt.setLong(1, id);
+			pstmt.setLong(2, tableId);
+			pstmt.setLong(3, columnTypeId);
+			pstmt.setTimestamp(4, new Timestamp(new Date().getTime()));
+			pstmt.setLong(5, 100);
+			pstmt.setTimestamp(6, new Timestamp(new Date().getTime()));
+			pstmt.setLong(7, 100);
+			int rs = pstmt.executeUpdate();
+			if(rs != 1) {
+				System.out.println("Insert Error : "+sql.toString());
+			}
+
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {

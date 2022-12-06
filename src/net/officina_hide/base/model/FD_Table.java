@@ -67,12 +67,12 @@ public class FD_Table extends FD_DB implements I_FD_Table {
 	 */
 	public void addColumnData() {
 		FD_Column column = new FD_Column(env);
-		column.addData(Table_ID, ADD_COLUMN_FD_TABLE_ID);
-		column.addData(Table_ID, ADD_COLUMN_FD_TABLE_Name);
-		column.addData(Table_ID, ADD_COMMON_COLUMN_Created);
-		column.addData(Table_ID, ADD_COMMON_COLUMN_CreatedBy);
-		column.addData(Table_ID, ADD_COMMON_COLUMN_Updated);
-		column.addData(Table_ID, ADD_COMMON_COLUMN_UpdatedBy);
+		column.addData(Table_ID, ADD_COLUMN_FD_TABLE_ID, COLUMN_TYPE_ID_KEY_NAME);
+		column.addData(Table_ID, ADD_COLUMN_FD_TABLE_Name, COLUMN_TYPE_VARCHAR_NAME);
+		column.addData(Table_ID, ADD_COMMON_COLUMN_Created, COLUMN_TYPE_DATETIME_NAME);
+		column.addData(Table_ID, ADD_COMMON_COLUMN_CreatedBy, COLUMN_TYPE_UNSIGNED_BIGINT_NAME);
+		column.addData(Table_ID, ADD_COMMON_COLUMN_Updated, COLUMN_TYPE_DATETIME_NAME);
+		column.addData(Table_ID, ADD_COMMON_COLUMN_UpdatedBy, COLUMN_TYPE_UNSIGNED_BIGINT_NAME);
 	}
 
 }

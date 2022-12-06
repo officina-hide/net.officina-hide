@@ -42,10 +42,11 @@ public interface I_FD_DB {
 	public final String FD_SQ = "'";
 
 	/** SQL用カラム属性設定[Column attribute setting for SQL] */
+	/** SQL用カラム属性 : 情報ID */
 	public final String COLUMN_TYPE_ID_KEY = " bigint unsigned NOT NULL PRIMARY KEY ";
 	public final String COLUMN_TYPE_ID = " bigint unsigned ";
-	public final String COLUMN_TYPE_ID_NAME = "ID";
-	public final String COLUMN_TYPE_ID_COMMENT = "情報ID";
+	public final String COLUMN_TYPE_ID_KEY_NAME = "ID";
+	public final String COLUMN_TYPE_ID_KEY_COMMENT = "情報ID";
 	/** SQL用カラム属性 : 文字列 */
 	public final String COLUMN_TYPE_VARCHAR = " varchar(n) ";
 	public final String COLUMN_TYPE_VARCHAR_NAME = "Varchar";
@@ -85,18 +86,22 @@ public interface I_FD_DB {
 	public final String ADD_COMMON_COLUMN_Created = "?" + "," + "?" + "," 
 			+ FD_SQ + COLUMNNAME_Created + FD_SQ + ","
 			+ FD_SQ + NAME_Created + FD_SQ + ","
+			+ "?" + ","
 			+ SQL_COMMON_COLUMN_INPUT_LIST;
 	public final String ADD_COMMON_COLUMN_CreatedBy = "?" + "," + "?" + "," 
 			+ FD_SQ + COLUMNNAME_CreatedBy + FD_SQ + ","
 			+ FD_SQ + NAME_CreatedBy + FD_SQ + ","
+			+ "?" + ","
 			+ SQL_COMMON_COLUMN_INPUT_LIST;
 	public final String ADD_COMMON_COLUMN_Updated = "?" + "," + "?" + "," 
 			+ FD_SQ + COLUMNNAME_Updated + FD_SQ + ","
 			+ FD_SQ + NAME_Updated + FD_SQ + ","
+			+ "?" + ","
 			+ SQL_COMMON_COLUMN_INPUT_LIST;
 	public final String ADD_COMMON_COLUMN_UpdatedBy = "?" + "," + "?" + "," 
 			+ FD_SQ + COLUMNNAME_UpdatedBy + FD_SQ + ","
 			+ FD_SQ + NAME_UpdatedBy + FD_SQ + ","
+			+ "?" + ","
 			+ SQL_COMMON_COLUMN_INPUT_LIST;
 	
 	/** 参照グループ */
