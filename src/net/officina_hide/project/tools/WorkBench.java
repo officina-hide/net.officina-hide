@@ -9,9 +9,13 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.control.SplitPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
+import javafx.scene.shape.Line;
 import javafx.scene.shape.Rectangle;
+import javafx.scene.text.Font;
+import javafx.scene.text.Text;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
+import net.officina_hide.project.model.FD_Project;
 import net.officina_hide.project.model.FD_WorkSheet;
 
 /**
@@ -37,12 +41,20 @@ public class WorkBench extends Application {
 	private double lineHeight;
 	/** テスト用データテーブル */
 	private List<FD_WorkSheet> wlist = new ArrayList<>();
+	/** 月幅 */
+	private double monthWidth;
+	/** タイトルフォント */
+	private Font titleFont = new Font("Meiryo UI", 18);
 	
 	@Override
 	public void start(Stage stage) throws Exception {
+		//プロジェクト情報生成（仮 : 2022/12/07)
+		FD_Project project = new FD_Project();
+		project.setStartDate("2023/4/1");
+		project.setEndDate("2026/3/31");
+		int mcnt = project.getLengthOfMonth();
 		//作業票リスト生成
 		wlist = getWorkSheetList();
-		System.out.println(wlist.size());
 		
 		SplitPane sp = new SplitPane();
 		
@@ -69,6 +81,9 @@ public class WorkBench extends Application {
 		titleWidth = Math.abs(iniWidth * 0.2);
 		//1行高さ
 		lineHeight = 28;
+		//1ヶ月の幅計算
+		monthWidth = Math.abs((iniWidth - titleWidth) / mcnt);
+		
 		
 		//タイトル枠
 		Rectangle titleBox = new Rectangle(titleWidth, lineHeight * wlist.size());
@@ -80,10 +95,30 @@ public class WorkBench extends Application {
 		paneR.getChildren().addAll(titleBox);
 		//バーチャート枠
 		Rectangle barBox = new Rectangle(iniWidth * 0.8, lineHeight * wlist.size() + 1);
+		barBox.setX(0);
+		barBox.setY(10);
 		barBox.setStrokeWidth(2);
 		barBox.setStroke(Color.DARKGRAY);
 		barBox.setFill(Color.WHITE);
-		paneL.getChildren().addAll(barBox);
+		//タイトル下線
+		Line titleBottomLine = new Line(0, lineHeight + 10, iniWidth * 0.8, lineHeight + 10);
+		titleBottomLine.setStrokeWidth(2);
+		titleBottomLine.setStroke(Color.DARKGRAY);
+		//年
+		int yearCount = project.getLengthOfYear();
+		
+		//月
+		Line monthLine = new Line(monthWidth, 10, monthWidth, lineHeight + 10);
+		monthLine.setStrokeWidth(2);
+		monthLine.setStroke(Color.DARKGRAY);
+		Text mon = new Text("04");
+		mon.setFont(titleFont);
+		mon.setX((monthWidth - mon.getLayoutBounds().getWidth()) / 2);
+		mon.setY(12 + (lineHeight  / 2) + 4.5);
+		System.out.println(mon.getLayoutBounds().getHeight());
+		System.out.println(mon.getLayoutBounds().getCenterY());
+		
+		paneL.getChildren().addAll(barBox, titleBottomLine, monthLine, mon);
 		
 		Scene scene = new Scene(sp, iniWidth, iniHeight);
 		stage.setScene(scene);
