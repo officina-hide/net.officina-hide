@@ -1,6 +1,7 @@
 package net.officina_hide.project.tools;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 import javafx.application.Application;
@@ -84,7 +85,6 @@ public class WorkBench extends Application {
 		//1ヶ月の幅計算
 		monthWidth = Math.abs((iniWidth - titleWidth) / mcnt);
 		
-		
 		//タイトル枠
 		Rectangle titleBox = new Rectangle(titleWidth, lineHeight * wlist.size());
 		titleBox.setX(10);
@@ -100,25 +100,55 @@ public class WorkBench extends Application {
 		barBox.setStrokeWidth(2);
 		barBox.setStroke(Color.DARKGRAY);
 		barBox.setFill(Color.WHITE);
+		paneL.getChildren().add(barBox);
 		//タイトル下線
-		Line titleBottomLine = new Line(0, lineHeight + 10, iniWidth * 0.8, lineHeight + 10);
+		Line titleBottomLine = new Line(0, (lineHeight * 2) + 10, iniWidth * 0.8, (lineHeight * 2) + 10);
 		titleBottomLine.setStrokeWidth(2);
 		titleBottomLine.setStroke(Color.DARKGRAY);
+		Line yearBottomLine = new Line(0, lineHeight + 10, iniWidth * 0.8, lineHeight + 10);
+		yearBottomLine.setStrokeWidth(2);
+		yearBottomLine.setStroke(Color.DARKGRAY);
+		paneL.getChildren().addAll(yearBottomLine, titleBottomLine);
 		//年
 		int yearCount = project.getLengthOfYear();
+		double cx = 0;
+		for(int ix = 1; ix <= yearCount; ix++) {
+			int monthCnt = 12;
+			if(ix == 1) {
+				monthCnt = 12 - project.getStartDate().get(Calendar.MONTH);
+			}
+			cx = cx + monthWidth * monthCnt;
+			if(ix == yearCount) {
+				monthCnt = project.getEndDate().get(Calendar.MONTH) + 1;
+				cx = iniWidth * 0.8;
+			} else {
+				//年境界線の線引き
+				Line yearLine = new Line(cx, 10, cx, lineHeight + 10);
+				yearLine.setStroke(Color.DARKGRAY);
+				yearLine.setStrokeWidth(2);
+				paneL.getChildren().add(yearLine);
+			}
+			//年表示
+			Text yearText = new Text(Integer.toString(project.getStartDate().get(Calendar.YEAR) + ix - 1)+"年");
+			yearText.setFont(titleFont);
+			yearText.setX(cx - (monthWidth * monthCnt / 2) - (yearText.getLayoutBounds().getWidth() / 2));
+			yearText.setY(15 + (yearText.getLayoutBounds().getHeight() / 2));
+			paneL.getChildren().add(yearText);
+		}
 		
-		//月
-		Line monthLine = new Line(monthWidth, 10, monthWidth, lineHeight + 10);
-		monthLine.setStrokeWidth(2);
-		monthLine.setStroke(Color.DARKGRAY);
-		Text mon = new Text("04");
-		mon.setFont(titleFont);
-		mon.setX((monthWidth - mon.getLayoutBounds().getWidth()) / 2);
-		mon.setY(12 + (lineHeight  / 2) + 4.5);
-		System.out.println(mon.getLayoutBounds().getHeight());
-		System.out.println(mon.getLayoutBounds().getCenterY());
 		
-		paneL.getChildren().addAll(barBox, titleBottomLine, monthLine, mon);
+//		//月
+//		Line monthLine = new Line(monthWidth, 10, monthWidth, lineHeight + 10);
+//		monthLine.setStrokeWidth(2);
+//		monthLine.setStroke(Color.DARKGRAY);
+//		Text mon = new Text("04");
+//		mon.setFont(titleFont);
+//		mon.setX((monthWidth - mon.getLayoutBounds().getWidth()) / 2);
+//		mon.setY(12 + (lineHeight  / 2) + 4.5);
+//		System.out.println(mon.getLayoutBounds().getHeight());
+//		System.out.println(mon.getLayoutBounds().getCenterY());
+		
+//		paneL.getChildren().addAll(barBox, titleBottomLine, monthLine, mon);
 		
 		Scene scene = new Scene(sp, iniWidth, iniHeight);
 		stage.setScene(scene);
