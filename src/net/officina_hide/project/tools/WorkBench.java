@@ -45,7 +45,8 @@ public class WorkBench extends Application {
 	/** 月幅 */
 	private double monthWidth;
 	/** タイトルフォント */
-	private Font titleFont = new Font("Meiryo UI", 18);
+	private Font titleFont = new Font("Meiryo UI", 16);
+	private Font Font12 = new Font("Meiryo UI", 12);
 	
 	@Override
 	public void start(Stage stage) throws Exception {
@@ -112,6 +113,7 @@ public class WorkBench extends Application {
 		//年
 		int yearCount = project.getLengthOfYear();
 		double cx = 0;
+		double startX = 0;
 		for(int ix = 1; ix <= yearCount; ix++) {
 			int monthCnt = 12;
 			if(ix == 1) {
@@ -123,22 +125,31 @@ public class WorkBench extends Application {
 				cx = iniWidth * 0.8;
 			} else {
 				//年境界線の線引き
-				Line yearLine = new Line(cx, 10, cx, lineHeight + 10);
+				Line yearLine = new Line(cx, 10, cx, lineHeight * 2 + 10);
 				yearLine.setStroke(Color.DARKGRAY);
-				yearLine.setStrokeWidth(2);
+				yearLine.setStrokeWidth(1);
 				paneL.getChildren().add(yearLine);
 			}
 			//年表示
 			Text yearText = new Text(Integer.toString(project.getStartDate().get(Calendar.YEAR) + ix - 1)+"年");
 			yearText.setFont(titleFont);
 			yearText.setX(cx - (monthWidth * monthCnt / 2) - (yearText.getLayoutBounds().getWidth() / 2));
-			yearText.setY(15 + (yearText.getLayoutBounds().getHeight() / 2));
+			yearText.setY(18 + (yearText.getLayoutBounds().getHeight() / 2));
 			paneL.getChildren().add(yearText);
+			//月表示
+			for(int jx = 1; jx < monthCnt; jx++) {
+				double x = startX + monthWidth * (jx);
+				Line monthLine = new Line(x, lineHeight + 10, x, lineHeight * 2 + 10);
+				monthLine.setStroke(Color.DARKGRAY);
+				monthLine.setStrokeWidth(1);
+				paneL.getChildren().add(monthLine);
+			}
+			startX = cx;
 		}
 		
 		
 //		//月
-//		Line monthLine = new Line(monthWidth, 10, monthWidth, lineHeight + 10);
+//		
 //		monthLine.setStrokeWidth(2);
 //		monthLine.setStroke(Color.DARKGRAY);
 //		Text mon = new Text("04");
