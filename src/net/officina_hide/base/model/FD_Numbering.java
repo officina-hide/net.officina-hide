@@ -115,4 +115,16 @@ public class FD_Numbering extends FD_DB implements I_FD_Numbering {
 		return id;
 	}
 
+	/**
+	 * テーブル情報項目登録[Table information item registration]<br>
+	 * @author officina-hide.net
+	 * @since 2022/12/20 Ver. 1.00
+	 */
+	public void addColumnData() {
+		FD_Column column = new FD_Column(env);
+		column.addData(Table_ID, ADD_COLUMN_FD_COLUMN_ID, COLUMN_TYPE_ID_KEY_NAME);
+		column.addData(Table_ID, ADD_COLUMN_FD_TABLE_ID, COLUMN_TYPE_ID_KEY_NAME);
+		column.addData(Table_ID, ADD_COLUMN_FD_InitialNumber, COLUMN_TYPE_UNSIGNED_BIGINT_NAME);
+	}
+
 }

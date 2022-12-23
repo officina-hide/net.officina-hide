@@ -68,7 +68,7 @@ public class FD_DBInitial extends FD_DB {
 		createTable(env, I_FD_Column.Table_Name, TABLE_CREATE_MODE_ORIGINAL,
 				I_FD_Column.SQL_CREATE_FD_COLUMN);
 		table.addColumnData();
-		//採番情報
+		num.addColumnData();
 		
 		System.out.println("データベース初期化終了 : "+new Date());
 	}

@@ -15,13 +15,15 @@ public interface I_FD_Numbering extends I_FD_DB {
 	
 	/** 採番情報ID */
 	public final String COLUMNNAME_FD_Numbering_ID = Table_Name + "_ID";
-	public final String COMMENT_FD_Numbering_ID = Table_Comment + "ID";
+	public final String NAME_FD_Numbering_ID = Table_Comment + "ID";
 	/** テーブル情報ID */
 	public final String COLUMNNAME_FD_Table_ID = I_FD_Table.COLUMNNAME_FD_Table_ID;
-	public final String COMMENT_FD_Table_ID = I_FD_Table.NAME_FD_Table_ID;
+	public final String NAME_FD_Table_ID = I_FD_Table.NAME_FD_Table_ID;
+	public final String COMMENT_FD_Table_ID = I_FD_Table.COMMENT_FD_Table_ID;
 	/** 採番初期値[Initial value for numbering] */
 	public final String COLUMNNAME_FD_InitialNumber = "FD_InitialNumber";
-	public final String COMMENT_FD_InitialNumber = "採番初期値";
+	public final String NAME_FD_InitialNumber = "採番初期値";
+	public final String COMMENT_FD_InitialNumber = "採番の初期の値";
 	/** 採番値[numbering value] */
 	public final String COLUMNNAME_FD_CurrentNumber = "FD_CurrentNumber";
 	public final String COMMENT_FD_CurrentNumber = "採番値";
@@ -30,11 +32,11 @@ public interface I_FD_Numbering extends I_FD_DB {
 	public final String SQL_CREATE_FD_Numbering = 
 			"CREATE TABLE IF NOT EXISTS " + Table_Name + " ("
 			+ COLUMNNAME_FD_Numbering_ID + COLUMN_TYPE_ID_KEY
-				+ COMMENT + FD_SQ + COMMENT_FD_Numbering_ID + FD_SQ + " "
+				+ COMMENT + FD_SQ + NAME_FD_Numbering_ID + FD_SQ + " "
 			+ "," + COLUMNNAME_FD_Table_ID + COLUMN_TYPE_ID
-				+ COMMENT + FD_SQ + COMMENT_FD_Table_ID + FD_SQ + " "
+				+ COMMENT + FD_SQ + NAME_FD_Table_ID + FD_SQ + " "
 			+ "," + COLUMNNAME_FD_InitialNumber + COLUMN_TYPE_UNSIGNED_BIGINT
-				+ COMMENT + FD_SQ + COMMENT_FD_InitialNumber + FD_SQ + " "
+				+ COMMENT + FD_SQ + NAME_FD_InitialNumber + FD_SQ + " "
 			+ "," + COLUMNNAME_FD_CurrentNumber  + COLUMN_TYPE_UNSIGNED_BIGINT
 				+ COMMENT + FD_SQ + COMMENT_FD_CurrentNumber + FD_SQ + " "
 			+ "," + SQL_CREATE_COMMON_COLUMN
@@ -50,4 +52,20 @@ public interface I_FD_Numbering extends I_FD_DB {
 			+ FD_SQ + Table_Comment + FD_SQ + ","
 			+ SQL_COMMON_COLUMN_INPUT_LIST;
 
+	/** テーブル項目情報登録 */
+	public final String ADD_COLUMN_FD_TABLE_ID = "?" + "," + "?" + ","
+			+ FD_SQ + COLUMNNAME_FD_Table_ID + FD_SQ + ","
+			+ FD_SQ + NAME_FD_Table_ID + FD_SQ + ","
+			+ "?" + ","
+			+ SQL_COMMON_COLUMN_INPUT_LIST;
+	public final String ADD_COLUMN_FD_COLUMN_ID =  "?" + "," + "?" + ","
+			+ FD_SQ + COLUMNNAME_FD_Numbering_ID + FD_SQ + ","
+			+ FD_SQ + NAME_FD_Numbering_ID + FD_SQ + ","
+			+ "?" + ","
+			+ SQL_COMMON_COLUMN_INPUT_LIST;
+	public final String ADD_COLUMN_FD_InitialNumber = "?" + "," + "?" + ","
+			+ FD_SQ + COLUMNNAME_FD_InitialNumber + FD_SQ + ","
+			+ FD_SQ + NAME_FD_InitialNumber + FD_SQ + ","
+			+ "?" + ","
+			+ SQL_COMMON_COLUMN_INPUT_LIST;
 }

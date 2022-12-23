@@ -15,6 +15,7 @@ public interface I_FD_Table extends I_FD_DB {
 	/** テーブル情報ID */
 	public final String COLUMNNAME_FD_Table_ID = Table_Name + "_ID";
 	public final String NAME_FD_Table_ID = Table_Comment + "ID";
+	public final String COMMENT_FD_Table_ID = "テーブル情報を識別するためのID";
 	/** テーブル名 */
 	public final String COLUMNNAME_FD_Table_Name = Table_Name + "_Name";
 	public final String Name_FD_Table_Name = "テーブル名";
