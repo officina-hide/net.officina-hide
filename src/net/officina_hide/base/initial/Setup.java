@@ -70,7 +70,7 @@ public class Setup extends Application implements I_FD_DB {
 		VBox root = new VBox(5);
 		root.setPadding(new Insets(10, 10, 10, 10));
 		setItem(root);
-		Scene scene = new Scene(root, 500, 400);
+		Scene scene = new Scene(root, 500, 300);
 		stage.setScene(scene);
 		stage.setTitle("初期設定");
 

@@ -2,13 +2,19 @@ package net.officina_hide.project.tools;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collection;
 import java.util.List;
 
 import javafx.application.Application;
+import javafx.geometry.Orientation;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.SplitPane;
+import javafx.scene.layout.Border;
+import javafx.scene.layout.BorderWidths;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Line;
 import javafx.scene.shape.Rectangle;
@@ -59,17 +65,22 @@ public class WorkBench extends Application {
 		wlist = getWorkSheetList();
 		
 		SplitPane sp = new SplitPane();
+		sp.setOrientation(Orientation.HORIZONTAL);		//横並びスプリット
 		
 		ScrollPane  scPaneR = new ScrollPane();
 		Pane paneR = new Pane();
 		scPaneR.setContent(paneR);
 		scPaneR.pannableProperty().set(true);
 
+		Pane paneLU = new Pane();		//バーチャート上部
+		paneLU.setPrefHeight(100);
+		Pane paneLD = new Pane();		//バーチャート下部
+		paneLD.setPrefHeight(300);
 		ScrollPane  scPaneL = new ScrollPane();
-		Pane paneL = new Pane();
-		scPaneL.setContent(paneL);
+		scPaneL.setContent(paneLD);
+		VBox ld = new VBox(paneLU, scPaneL);
 		
-		sp.getItems().addAll(scPaneR, scPaneL);
+		sp.getItems().addAll(scPaneR, ld);
 		sp.setDividerPositions(0.2, 0.8);
 		
 		//システム画面のサイズ取得
@@ -86,6 +97,9 @@ public class WorkBench extends Application {
 		//1ヶ月の幅計算
 		monthWidth = Math.abs((iniWidth - titleWidth) / mcnt);
 		
+		//プロジェクト枠
+		paneLU.getChildren().addAll(createProjectBox());
+		
 		//タイトル枠
 		Rectangle titleBox = new Rectangle(titleWidth, lineHeight * wlist.size());
 		titleBox.setX(10);
@@ -101,7 +115,7 @@ public class WorkBench extends Application {
 		barBox.setStrokeWidth(2);
 		barBox.setStroke(Color.DARKGRAY);
 		barBox.setFill(Color.WHITE);
-		paneL.getChildren().add(barBox);
+		paneLD.getChildren().add(barBox);
 		//タイトル下線
 		Line titleBottomLine = new Line(0, (lineHeight * 2) + 10, iniWidth * 0.8, (lineHeight * 2) + 10);
 		titleBottomLine.setStrokeWidth(2);
@@ -109,7 +123,7 @@ public class WorkBench extends Application {
 		Line yearBottomLine = new Line(0, lineHeight + 10, iniWidth * 0.8, lineHeight + 10);
 		yearBottomLine.setStrokeWidth(2);
 		yearBottomLine.setStroke(Color.DARKGRAY);
-		paneL.getChildren().addAll(yearBottomLine, titleBottomLine);
+		paneLD.getChildren().addAll(yearBottomLine, titleBottomLine);
 		//年
 		int yearCount = project.getLengthOfYear();
 		double cx = 0;
@@ -128,42 +142,51 @@ public class WorkBench extends Application {
 				Line yearLine = new Line(cx, 10, cx, lineHeight * 2 + 10);
 				yearLine.setStroke(Color.DARKGRAY);
 				yearLine.setStrokeWidth(1);
-				paneL.getChildren().add(yearLine);
+				paneLD.getChildren().add(yearLine);
 			}
 			//年表示
 			Text yearText = new Text(Integer.toString(project.getStartDate().get(Calendar.YEAR) + ix - 1)+"年");
 			yearText.setFont(titleFont);
 			yearText.setX(cx - (monthWidth * monthCnt / 2) - (yearText.getLayoutBounds().getWidth() / 2));
 			yearText.setY(18 + (yearText.getLayoutBounds().getHeight() / 2));
-			paneL.getChildren().add(yearText);
+			paneLD.getChildren().add(yearText);
 			//月表示
 			for(int jx = 1; jx < monthCnt; jx++) {
 				double x = startX + monthWidth * (jx);
 				Line monthLine = new Line(x, lineHeight + 10, x, lineHeight * 2 + 10);
 				monthLine.setStroke(Color.DARKGRAY);
 				monthLine.setStrokeWidth(1);
-				paneL.getChildren().add(monthLine);
+				paneLD.getChildren().add(monthLine);
 			}
 			startX = cx;
 		}
 		
-		
-//		//月
-//		
-//		monthLine.setStrokeWidth(2);
-//		monthLine.setStroke(Color.DARKGRAY);
-//		Text mon = new Text("04");
-//		mon.setFont(titleFont);
-//		mon.setX((monthWidth - mon.getLayoutBounds().getWidth()) / 2);
-//		mon.setY(12 + (lineHeight  / 2) + 4.5);
-//		System.out.println(mon.getLayoutBounds().getHeight());
-//		System.out.println(mon.getLayoutBounds().getCenterY());
-		
-//		paneL.getChildren().addAll(barBox, titleBottomLine, monthLine, mon);
-		
 		Scene scene = new Scene(sp, iniWidth, iniHeight);
 		stage.setScene(scene);
 		stage.show();
+	}
+
+	/**
+	 * プロジェクト名表示<br>
+	 * @author officina-hide.net
+	 * @since 2023/01/19 Ver. 1.00
+	 * @return プロジェクト名枠
+	 */
+	private Collection<Node> createProjectBox() {
+		Collection<Node> nodes = new ArrayList<Node>();
+		Text projectLabelText = new Text("プロジェクト");
+		projectLabelText.setFont(titleFont);
+		projectLabelText.setStroke(Color.DARKGRAY);
+		projectLabelText.setX(10);
+		projectLabelText.setY(31);
+		nodes.add(projectLabelText);
+		Rectangle box = new Rectangle(200, lineHeight, Color.WHITE);
+		box.setX(110);
+		box.setY(10);
+		box.setStrokeWidth(2);
+		box.setStroke(Color.DARKGRAY);
+		nodes.add(box);
+		return nodes;
 	}
 
 	/**

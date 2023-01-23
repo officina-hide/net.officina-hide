@@ -28,6 +28,7 @@ public interface I_FD_Table extends I_FD_DB {
 				+ COMMENT + FD_SQ + NAME_FD_Table_ID + FD_SQ
 			+ "," + COLUMNNAME_FD_Table_Name 
 				+ COLUMN_TYPE_VARCHAR.replaceAll("n", Integer.toString(SIZE_FD_Table_Name))
+				+ " not null " + " "
 				+ COMMENT + FD_SQ + Name_FD_Table_Name + FD_SQ + " "
 			+ "," + COLUMNNAME_FD_Name + COLUMN_TYPE_VARCHAR.replaceAll("n", "200")
 				+ COMMENT + FD_SQ + NAME_FD_Name + FD_SQ + " "
@@ -48,10 +49,18 @@ public interface I_FD_Table extends I_FD_DB {
 			+ FD_SQ + COLUMNNAME_FD_Table_ID + FD_SQ + ","
 			+ FD_SQ + NAME_FD_Table_ID + FD_SQ + ","
 			+ "?" + ","
+			+ FD_SQ + YESNO_YES + FD_SQ + ","
 			+ SQL_COMMON_COLUMN_INPUT_LIST;
 	public final String ADD_COLUMN_FD_TABLE_Name = "?" + "," + "?" + ","
 			+ FD_SQ + COLUMNNAME_FD_Table_Name + FD_SQ + ","
 			+ FD_SQ + Name_FD_Table_Name + FD_SQ + ","
 			+ "?" + ","
+			+ FD_SQ + YESNO_YES + FD_SQ + ","
 			+ SQL_COMMON_COLUMN_INPUT_LIST;
+	public final String ADD_COLUMN_FD_Name = "?" + "," + "?" + ","
+			+ FD_SQ + COLUMNNAME_FD_Name + FD_SQ + ","
+			+ FD_SQ + NAME_FD_Name + FD_SQ + ","
+			+ "?" + ","
+			+ FD_SQ + YESNO_NO + FD_SQ + ","
+			+ SQL_COMMON_COLUMN_INPUT_LIST;			
 }

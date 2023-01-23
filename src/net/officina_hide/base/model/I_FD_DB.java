@@ -59,6 +59,10 @@ public interface I_FD_DB {
 	public final String COLUMN_TYPE_UNSIGNED_BIGINT = " bigint unsigned ";
 	public final String COLUMN_TYPE_UNSIGNED_BIGINT_NAME = "BigInt Unsigned";
 	public final String COLUMN_TYPE_UNSIGNED_BIGINT_COMMENT = "符号無し整数";
+	/** SQL用カラム属性 : YesNo */
+	public final String COLUMN_TYPE_YESNO = " enum ('Y', 'N')";
+	public final String YESNO_YES = "Y";
+	public final String YESNO_NO = "N";
 	
 	/** 共通項目追加用SQL[SQL for adding common items] */
 	public final String SQL_CREATE_COMMON_COLUMN =
@@ -87,21 +91,25 @@ public interface I_FD_DB {
 			+ FD_SQ + COLUMNNAME_Created + FD_SQ + ","
 			+ FD_SQ + NAME_Created + FD_SQ + ","
 			+ "?" + ","
+			+ FD_SQ + YESNO_NO + FD_SQ + ","
 			+ SQL_COMMON_COLUMN_INPUT_LIST;
 	public final String ADD_COMMON_COLUMN_CreatedBy = "?" + "," + "?" + "," 
 			+ FD_SQ + COLUMNNAME_CreatedBy + FD_SQ + ","
 			+ FD_SQ + NAME_CreatedBy + FD_SQ + ","
 			+ "?" + ","
+			+ FD_SQ + YESNO_NO + FD_SQ + ","
 			+ SQL_COMMON_COLUMN_INPUT_LIST;
 	public final String ADD_COMMON_COLUMN_Updated = "?" + "," + "?" + "," 
 			+ FD_SQ + COLUMNNAME_Updated + FD_SQ + ","
 			+ FD_SQ + NAME_Updated + FD_SQ + ","
 			+ "?" + ","
+			+ FD_SQ + YESNO_NO + FD_SQ + ","
 			+ SQL_COMMON_COLUMN_INPUT_LIST;
 	public final String ADD_COMMON_COLUMN_UpdatedBy = "?" + "," + "?" + "," 
 			+ FD_SQ + COLUMNNAME_UpdatedBy + FD_SQ + ","
 			+ FD_SQ + NAME_UpdatedBy + FD_SQ + ","
 			+ "?" + ","
+			+ FD_SQ + YESNO_NO + FD_SQ + ","
 			+ SQL_COMMON_COLUMN_INPUT_LIST;
 	
 	/** 参照グループ */

@@ -99,6 +99,7 @@ public class FD_Column extends FD_DB implements I_FD_Column {
 		sql.append(COLUMNNAME_FD_Column_Name).append(",");
 		sql.append(COLUMNNAME_FD_Name).append(",");
 		sql.append(COLUMNNAME_FD_ColumnType_ID).append(",");
+		sql.append(COLUMNNAME_FD_NotNull).append(",");
 		sql.append(SQL_COMMON_COLUMN_LIST);
 		sql.append(")");
 		sql.append(" VALUES ").append("(");
@@ -125,6 +126,22 @@ public class FD_Column extends FD_DB implements I_FD_Column {
 		} finally {
 			DBClose(pstmt, null);
 		}
+	}
+
+	/**
+	 * テーブル情報項目登録[Table information item registration]<br>
+	 * @author officina-hide.net
+	 * @since 2022/12/28 Ver. 1.00
+	 */
+	public void addColumnData() {
+		this.addData(Table_ID, ADD_COLUMN_FD_COLUMN_ID, COLUMN_TYPE_ID_KEY_NAME);
+		this.addData(Table_ID, ADD_COLUMN_FD_Table_ID, COLUMN_TYPE_ID_KEY_NAME);
+		this.addData(Table_ID, ADD_COLUMN_FD_Column_Name, COLUMN_TYPE_VARCHAR_NAME);
+
+		this.addData(Table_ID, ADD_COMMON_COLUMN_Created, COLUMN_TYPE_DATETIME_NAME);
+		this.addData(Table_ID, ADD_COMMON_COLUMN_CreatedBy, COLUMN_TYPE_UNSIGNED_BIGINT_NAME);
+		this.addData(Table_ID, ADD_COMMON_COLUMN_Updated, COLUMN_TYPE_DATETIME_NAME);
+		this.addData(Table_ID, ADD_COMMON_COLUMN_UpdatedBy, COLUMN_TYPE_UNSIGNED_BIGINT_NAME);
 	}
 
 }

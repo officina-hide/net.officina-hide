@@ -125,6 +125,11 @@ public class FD_Numbering extends FD_DB implements I_FD_Numbering {
 		column.addData(Table_ID, ADD_COLUMN_FD_COLUMN_ID, COLUMN_TYPE_ID_KEY_NAME);
 		column.addData(Table_ID, ADD_COLUMN_FD_TABLE_ID, COLUMN_TYPE_ID_KEY_NAME);
 		column.addData(Table_ID, ADD_COLUMN_FD_InitialNumber, COLUMN_TYPE_UNSIGNED_BIGINT_NAME);
+		column.addData(Table_ID, ADD_COLUMN_FD_CurrentNumber, COLUMN_TYPE_UNSIGNED_BIGINT_NAME);
+		column.addData(Table_ID, ADD_COMMON_COLUMN_Created, COLUMN_TYPE_DATETIME_NAME);
+		column.addData(Table_ID, ADD_COMMON_COLUMN_CreatedBy, COLUMN_TYPE_UNSIGNED_BIGINT_NAME);
+		column.addData(Table_ID, ADD_COMMON_COLUMN_Updated, COLUMN_TYPE_DATETIME_NAME);
+		column.addData(Table_ID, ADD_COMMON_COLUMN_UpdatedBy, COLUMN_TYPE_UNSIGNED_BIGINT_NAME);
 	}
 
 }

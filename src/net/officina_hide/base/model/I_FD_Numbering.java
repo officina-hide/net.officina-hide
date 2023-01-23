@@ -26,7 +26,8 @@ public interface I_FD_Numbering extends I_FD_DB {
 	public final String COMMENT_FD_InitialNumber = "採番の初期の値";
 	/** 採番値[numbering value] */
 	public final String COLUMNNAME_FD_CurrentNumber = "FD_CurrentNumber";
-	public final String COMMENT_FD_CurrentNumber = "採番値";
+	public final String NAME_FD_CurrentNumber = "採番値";
+	public final String COMMENT_FD_CurrentNumber = "現在採番されている値";
 	
 	/** テーブル構築用SQL文[SQL statement for table construction] */
 	public final String SQL_CREATE_FD_Numbering = 
@@ -38,7 +39,7 @@ public interface I_FD_Numbering extends I_FD_DB {
 			+ "," + COLUMNNAME_FD_InitialNumber + COLUMN_TYPE_UNSIGNED_BIGINT
 				+ COMMENT + FD_SQ + NAME_FD_InitialNumber + FD_SQ + " "
 			+ "," + COLUMNNAME_FD_CurrentNumber  + COLUMN_TYPE_UNSIGNED_BIGINT
-				+ COMMENT + FD_SQ + COMMENT_FD_CurrentNumber + FD_SQ + " "
+				+ COMMENT + FD_SQ + NAME_FD_CurrentNumber + FD_SQ + " "
 			+ "," + SQL_CREATE_COMMON_COLUMN
 			+ ")"
 			+ COMMENT + FD_SQ + Table_Comment + FD_SQ
@@ -57,15 +58,24 @@ public interface I_FD_Numbering extends I_FD_DB {
 			+ FD_SQ + COLUMNNAME_FD_Table_ID + FD_SQ + ","
 			+ FD_SQ + NAME_FD_Table_ID + FD_SQ + ","
 			+ "?" + ","
+			+ FD_SQ + YESNO_YES + FD_SQ + ","
 			+ SQL_COMMON_COLUMN_INPUT_LIST;
 	public final String ADD_COLUMN_FD_COLUMN_ID =  "?" + "," + "?" + ","
 			+ FD_SQ + COLUMNNAME_FD_Numbering_ID + FD_SQ + ","
 			+ FD_SQ + NAME_FD_Numbering_ID + FD_SQ + ","
 			+ "?" + ","
+			+ FD_SQ + YESNO_YES + FD_SQ + ","
 			+ SQL_COMMON_COLUMN_INPUT_LIST;
 	public final String ADD_COLUMN_FD_InitialNumber = "?" + "," + "?" + ","
 			+ FD_SQ + COLUMNNAME_FD_InitialNumber + FD_SQ + ","
 			+ FD_SQ + NAME_FD_InitialNumber + FD_SQ + ","
 			+ "?" + ","
+			+ FD_SQ + YESNO_YES + FD_SQ + ","
+			+ SQL_COMMON_COLUMN_INPUT_LIST;
+	public final String ADD_COLUMN_FD_CurrentNumber = "?" + "," + "?" + ","
+			+ FD_SQ + COLUMNNAME_FD_CurrentNumber + FD_SQ + ","
+			+ FD_SQ + NAME_FD_CurrentNumber + FD_SQ + ","
+			+ "?" + ","
+			+ FD_SQ + YESNO_YES + FD_SQ + ","
 			+ SQL_COMMON_COLUMN_INPUT_LIST;
 }

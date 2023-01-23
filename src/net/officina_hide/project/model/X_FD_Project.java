@@ -15,7 +15,9 @@ import net.officina_hide.base.model.FD_DB;
  * @since 2022/12/07 Ver. 1.00
  */
 public class X_FD_Project extends FD_DB {
-	
+
+	/** プロジェクト情報ID */
+	private long FD_Project_ID;
 	/** プロジェクト開始日 */
 	private Calendar startDate;
 	/** プロジェクト終了日 */
@@ -23,7 +25,7 @@ public class X_FD_Project extends FD_DB {
 	
 	public Calendar getStartDate() {
 		if(startDate == null) {
-			startDate = new GregorianCalendar(new Locale(Locale.JAPAN.getLanguage(), Locale.JAPAN.getCountry()));
+			startDate = new GregorianCalendar(Locale.JAPAN);
 		}
 		return startDate;
 	}
@@ -63,5 +65,11 @@ public class X_FD_Project extends FD_DB {
 	}
 	public void setEndDate(Calendar endDate) {
 		this.endDate = endDate;
+	}
+	public long getFD_Project_ID() {
+		return FD_Project_ID;
+	}
+	public void setFD_Project_ID(long fD_Project_ID) {
+		FD_Project_ID = fD_Project_ID;
 	}
 }

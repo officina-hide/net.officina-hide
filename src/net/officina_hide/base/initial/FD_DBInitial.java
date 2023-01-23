@@ -2,6 +2,7 @@ package net.officina_hide.base.initial;
 
 import java.util.Date;
 
+import net.officina_hide.base.model.FD_Column;
 import net.officina_hide.base.model.FD_DB;
 import net.officina_hide.base.model.FD_EnvData;
 import net.officina_hide.base.model.FD_Numbering;
@@ -46,6 +47,7 @@ public class FD_DBInitial extends FD_DB {
 		FD_Table table = new FD_Table(env);
 		FD_Numbering num = new FD_Numbering(env);
 		FD_Reference ref = new FD_Reference(env);
+		FD_Column column = new FD_Column(env);
 		//採番情報テーブル構築
 		createTable(env, I_FD_Numbering.Table_Name, TABLE_CREATE_MODE_ORIGINAL,
 				I_FD_Numbering.SQL_CREATE_FD_Numbering);
@@ -69,6 +71,7 @@ public class FD_DBInitial extends FD_DB {
 				I_FD_Column.SQL_CREATE_FD_COLUMN);
 		table.addColumnData();
 		num.addColumnData();
+		column.addColumnData();
 		
 		System.out.println("データベース初期化終了 : "+new Date());
 	}
