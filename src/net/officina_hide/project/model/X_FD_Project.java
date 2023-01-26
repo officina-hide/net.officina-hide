@@ -51,7 +51,7 @@ public class X_FD_Project extends FD_DB {
 	}
 	public Calendar getEndDate() {
 		if(endDate == null) {
-			endDate = new GregorianCalendar(new Locale(Locale.JAPAN.getLanguage(), Locale.JAPAN.getCountry()));
+			endDate = new GregorianCalendar(Locale.JAPAN);
 		}
 		return endDate;
 	}

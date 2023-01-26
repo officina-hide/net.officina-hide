@@ -1,12 +1,14 @@
 package net.officina_hide.base.model;
 
+import java.io.FileInputStream;
+import java.io.IOException;
 import java.util.Properties;
 
 /**
  * 環境クラス[Environment class]
  * @author officina-hide.net
  * @version 1.00 新規作成[New create]
- * @since 2022/10/24 Ver. 1.00
+ * @since 2022/10/24 Ver. 1.0
  */
 public class FD_EnvData implements I_FD_DB {
 
@@ -28,6 +30,25 @@ public class FD_EnvData implements I_FD_DB {
 		dbPort = prop.getProperty(DB_PORT);
 		dbUserID = prop.getProperty(DB_USER_ID);
 		dbPassword = prop.getProperty(DB_USER_PASSWORD);
+	}
+
+	/**
+	 * コンストラクタ
+	 * @param envFile 環境プロパティファイル
+	 */
+	public FD_EnvData(String envFile) {
+		try {
+			FileInputStream is = new FileInputStream(envFile);
+			Properties prop = new Properties();
+			prop.load(is);
+			dbServerName = prop.getProperty(DB_SERVER_NAME);
+			dbName = prop.getProperty(DB_NAME);
+			dbPort = prop.getProperty(DB_PORT);
+			dbUserID = prop.getProperty(DB_USER_ID);
+			dbPassword = prop.getProperty(DB_USER_PASSWORD);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 
 	public String getDbServerName() {

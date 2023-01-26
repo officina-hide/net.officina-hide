@@ -20,7 +20,7 @@ public class FD_Project extends X_FD_Project {
 	 */
 	public int getLengthOfMonth() {
 		int mcnt = 1;
-		Calendar diffCal  = new GregorianCalendar(new Locale(Locale.JAPAN.getLanguage(), Locale.JAPAN.getCountry()));
+		Calendar diffCal  = new GregorianCalendar(Locale.JAPAN);
 		diffCal.setTimeInMillis(getStartDate().getTimeInMillis());
 		while((diffCal.get(Calendar.YEAR) == getEndDate().get(Calendar.YEAR) &&
 				diffCal.get(Calendar.MONTH) == getEndDate().get(Calendar.MONTH)) == false) {

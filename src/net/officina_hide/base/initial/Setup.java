@@ -87,21 +87,21 @@ public class Setup extends Application implements I_FD_DB {
 	 * @since 2022/10/17 Ver. 1.00
 	 */
 	private FD_EnvData getEnvData() {
-		try {
-			File propFile = new File("./Env.prop");
-			FileInputStream is = new FileInputStream(propFile);
-			Properties prop = new Properties();
-			prop.load(is);
-			dbServerName.setText(prop.getProperty(DB_SERVER_NAME));
-			dbName.setText(prop.getProperty(DB_NAME));
-			dbPort.setText(prop.getProperty(DB_PORT));
-			dbUserId.setText(prop.getProperty(DB_USER_ID));
-			dbPassword.setText(prop.getProperty(DB_USER_PASSWORD));
+//		try {
+//			File propFile = new File("./Env.prop");
+//			FileInputStream is = new FileInputStream(propFile);
+//			Properties prop = new Properties();
+//			prop.load(is);
+//			dbServerName.setText(prop.getProperty(DB_SERVER_NAME));
+//			dbName.setText(prop.getProperty(DB_NAME));
+//			dbPort.setText(prop.getProperty(DB_PORT));
+//			dbUserId.setText(prop.getProperty(DB_USER_ID));
+//			dbPassword.setText(prop.getProperty(DB_USER_PASSWORD));
 			//環境情報セット
-			env = new FD_EnvData(prop);
-		} catch (IOException e) {
-			//何もしない
-		}
+			env = new FD_EnvData("./Env.prop");
+//		} catch (IOException e) {
+//			//何もしない
+//		}
 		
 		return env;
 	}
