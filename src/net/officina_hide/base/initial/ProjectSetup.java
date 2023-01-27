@@ -15,7 +15,7 @@ public class ProjectSetup extends Application {
 	//環境情報
 	private FD_EnvData env = null;
 	//環境プロパティファイル
-	final String envFile = "./Env.prop";
+	final String envFile = "Env.prop";
 	
 	@Override
 	public void start(Stage stage) throws Exception {

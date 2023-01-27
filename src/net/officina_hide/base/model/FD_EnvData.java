@@ -1,5 +1,6 @@
 package net.officina_hide.base.model;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Properties;
@@ -23,22 +24,14 @@ public class FD_EnvData implements I_FD_DB {
 	/** データベースパスワード */
 	private String dbPassword;
 	
-	public FD_EnvData(Properties prop) {
-		//起動時プロパティから環境情報をセットする。
-		dbServerName = prop.getProperty(DB_SERVER_NAME);
-		dbName = prop.getProperty(DB_NAME);
-		dbPort = prop.getProperty(DB_PORT);
-		dbUserID = prop.getProperty(DB_USER_ID);
-		dbPassword = prop.getProperty(DB_USER_PASSWORD);
-	}
-
 	/**
 	 * コンストラクタ
 	 * @param envFile 環境プロパティファイル
 	 */
 	public FD_EnvData(String envFile) {
 		try {
-			FileInputStream is = new FileInputStream(envFile);
+			File propFile = new File(envFile);
+			FileInputStream is = new FileInputStream(propFile);
 			Properties prop = new Properties();
 			prop.load(is);
 			dbServerName = prop.getProperty(DB_SERVER_NAME);

@@ -1,7 +1,6 @@
 package net.officina_hide.base.initial;
 
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
@@ -30,7 +29,7 @@ import net.officina_hide.base.model.VC_ViewItem;
 
 /**
  * プロジェクト動作用の環境セット[environment set for project operation]<br>
- * 環境プロパティを読み込んで画面に表示する。<br>
+ * 環境プロパティを読み込んで画面に表示する。<br> 
  * 画面上で以下のチェックを実施する。
  * 　　・DB接続テスト
  * @author officina-hide.net
@@ -87,22 +86,14 @@ public class Setup extends Application implements I_FD_DB {
 	 * @since 2022/10/17 Ver. 1.00
 	 */
 	private FD_EnvData getEnvData() {
-//		try {
-//			File propFile = new File("./Env.prop");
-//			FileInputStream is = new FileInputStream(propFile);
-//			Properties prop = new Properties();
-//			prop.load(is);
-//			dbServerName.setText(prop.getProperty(DB_SERVER_NAME));
-//			dbName.setText(prop.getProperty(DB_NAME));
-//			dbPort.setText(prop.getProperty(DB_PORT));
-//			dbUserId.setText(prop.getProperty(DB_USER_ID));
-//			dbPassword.setText(prop.getProperty(DB_USER_PASSWORD));
-			//環境情報セット
-			env = new FD_EnvData("./Env.prop");
-//		} catch (IOException e) {
-//			//何もしない
-//		}
-		
+		//環境情報取得
+		env = new FD_EnvData("./env.prop");
+		//画面項目セット
+		dbServerName.setText(env.getDbServerName());
+		dbName.setText(env.getDbName());
+		dbPort.setText(env.getDbPort());
+		dbUserId.setText(env.getDbUserID());
+		dbPassword.setText(env.getDbPassword());
 		return env;
 	}
 
