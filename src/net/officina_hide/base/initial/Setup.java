@@ -18,7 +18,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import net.officina_hide.base.control.DBConnectTest;
-import net.officina_hide.base.model.FDCheck;
+import net.officina_hide.base.model.FD_Check;
 import net.officina_hide.base.model.FD_DB;
 import net.officina_hide.base.model.FD_EnvData;
 import net.officina_hide.base.model.I_FD_DB;
@@ -50,7 +50,7 @@ public class Setup extends Application implements I_FD_DB {
 	/** データベースパスワード */
 	private PasswordText dbPassword;
 	/** DB初期化チェック */
-	private FDCheck dbExsistsCheck;
+	private FD_Check dbExsistsCheck;
 	/** 保存ボタン */
 	private Button saveButton;
 	/** ステータスバー[Status bar] */
@@ -108,7 +108,7 @@ public class Setup extends Application implements I_FD_DB {
 		dbPort = new SingleText("ポート");
 		dbUserId = new SingleText("ユーザーID");
 		dbPassword = new PasswordText("パスワード");
-		dbExsistsCheck = new FDCheck("DB作成済み");
+		dbExsistsCheck = new FD_Check("DB作成済み");
 		setupStatus = new StatusBar();
 		
 		HBox buttonBox = new HBox(5);

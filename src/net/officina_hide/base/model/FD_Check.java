@@ -12,7 +12,7 @@ import javafx.scene.text.Font;
  * @version 1.00 新規作成[New create]
  * @since 2022/10/21 Ver 1.00
  */
-public class FDCheck {
+public class FD_Check {
 	
 	/** ラベル名 */
 	private String labelName;
@@ -27,7 +27,7 @@ public class FDCheck {
 	 * @since 2022/10/21 Ver. 1.00
 	 * @param labelName ラベル
 	 */
-	public FDCheck(String labelName) {
+	public FD_Check(String labelName) {
 		this.labelName = labelName;
 	}
 
