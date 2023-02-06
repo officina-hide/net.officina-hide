@@ -3,10 +3,12 @@ package net.officina_hide.base.initial;
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
-import javafx.scene.control.CheckBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import net.officina_hide.base.control.FD_Button;
+import net.officina_hide.base.control.FD_DispWithButton;
 import net.officina_hide.base.model.FD_Check;
+import net.officina_hide.base.model.FD_DB;
 import net.officina_hide.base.model.FD_EnvData;
 
 /**
@@ -17,12 +19,19 @@ import net.officina_hide.base.model.FD_EnvData;
  */
 public class ProjectSetup extends Application {
 
+	/** DBクラス */
+	private FD_DB DB = new FD_DB();
+
 	//環境情報
 	private FD_EnvData env = null;
 	//環境プロパティファイル
 	final String envFile = "Env.prop";
 	//画面項目
 	private FD_Check connectDB;
+	//プロジェクト情報
+	private FD_DispWithButton projectInfo;
+	/** 初期化ボタン */
+	private FD_Button initialProject;
 	
 	@Override
 	public void start(Stage stage) throws Exception {
@@ -36,6 +45,13 @@ public class ProjectSetup extends Application {
 		stage.setScene(scene);
 		stage.setTitle("プロジェクト初期設定");
 		
+		//データベース接続確認
+		if(DB.isExistsTable(env, "FD_Table") == true) {
+			connectDB.setCheck(true);
+		}
+		//プロジェクトテーブル確認
+		
+		
 		stage.show();
 	}
 
@@ -47,8 +63,11 @@ public class ProjectSetup extends Application {
 	 */
 	private void setItem(VBox root) {
 		connectDB = new FD_Check("データベース接続済");
+		projectInfo = new FD_DispWithButton("プロジェクト情報");
+		projectInfo.setDispText("test");
+		initialProject = new FD_Button("プロジェクト初期化");
 		
-		root.getChildren().addAll(connectDB.getNode());
+		root.getChildren().addAll(connectDB.getNode(), projectInfo.getNode(), initialProject);
 	}
 
 	public static void main(String[] args) {
