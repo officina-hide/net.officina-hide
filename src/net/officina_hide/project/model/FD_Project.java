@@ -4,6 +4,8 @@ import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.Locale;
 
+import net.officina_hide.base.model.FD_EnvData;
+
 /**
  * プロジェクト情報クラス[Project information class]
  * @author officina-hide.net
@@ -39,5 +41,16 @@ public class FD_Project extends X_FD_Project {
 	public int getLengthOfYear() {
 		int ycnt = getEndDate().get(Calendar.YEAR) -  getStartDate().get(Calendar.YEAR) + 1;
 		return ycnt;
+	}
+
+	/**
+	 * プロジェクトテーブル構築[Build project table]
+	 * @author officina-hide.net
+	 * @since 2023/02/20 Ver. 1.00
+	 * @param env 環境情報[Environment information]
+	 */
+	public void create(FD_EnvData env) {
+		//テーブル情報登録
+		
 	}
 }

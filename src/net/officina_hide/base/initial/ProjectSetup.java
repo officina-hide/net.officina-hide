@@ -65,7 +65,8 @@ public class ProjectSetup extends Application {
 		connectDB = new FD_Check("データベース接続済");
 		projectInfo = new FD_DispWithButton("プロジェクト情報");
 		projectInfo.setDispText("test");
-		initialProject = new FD_Button("プロジェクト初期化");
+		initialProject = new FD_Button(env, "プロジェクト初期化");
+		initialProject.setClassName("net.officina_hide.project.tools.ProjectInitialize");
 		
 		root.getChildren().addAll(connectDB.getNode(), projectInfo.getNode(), initialProject);
 	}
