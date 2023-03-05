@@ -6,6 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Date;
+import java.util.List;
 
 /**
  * 	データベースクラス[Database class]
@@ -127,6 +128,27 @@ public class FD_DB implements I_FD_DB {
 		} finally {
 			DBClose(pstmt, null);
 		}
+	}
+
+	/**
+	 * テーブル生成[Table generation]
+	 * <p>テーブル情報とテーブル項目情報から実際のテーブルを構築する。<br>
+	 * 構築に際しては、既登録のテーブルは削除する。</p>
+	 * <p>Build the actual table from table information and table item information.<br>
+	 * At the time of construction, the already registered table is deleted.</p>
+	 * 
+	 * @author officina-hide.net
+	 * @since 2023/02/28 Ver. 1.00
+	 * @param env 環境情報[Environment information]
+	 * @param tableId テーブル情報ID[Table information ID]
+	 */
+	public void createTable(FD_EnvData env, long tableId) {
+		//テーブル情報取得
+		X_FD_Table table = new X_FD_Table(env, tableId);
+		System.out.println(table.getFD_Table_Name());
+		//テーブル項目情報取得
+		//既登録分のテーブルをDropする。
+		//テーブル生成
 	}
 
 	private final String SQL_ExistsTable =

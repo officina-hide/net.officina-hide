@@ -4,7 +4,9 @@ import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.Locale;
 
+import net.officina_hide.base.model.FD_Column;
 import net.officina_hide.base.model.FD_EnvData;
+import net.officina_hide.base.model.FD_Table;
 
 /**
  * プロジェクト情報クラス[Project information class]
@@ -12,7 +14,7 @@ import net.officina_hide.base.model.FD_EnvData;
  * @version 1.00 新規作成[New create]
  * @since 2022/12/07 Ver. 1.00
  */
-public class FD_Project extends X_FD_Project {
+public class FD_Project extends X_FD_Project implements I_FD_Project {
 
 	/**
 	 * プロジェクト期間の月数を取得[Get project duration months]<br>
@@ -51,6 +53,10 @@ public class FD_Project extends X_FD_Project {
 	 */
 	public void create(FD_EnvData env) {
 		//テーブル情報登録
-		
+		FD_Table table = new FD_Table(env);
+		FD_Column column = new FD_Column(env);
+		long tebleId = table.addData(ADD_FD_Table);
+		column.addData(tebleId, ADD_COLUMN_FD_Project_ID, COLUMN_TYPE_ID_KEY_NAME);
+		createTable(env, tebleId);
 	}
 }
