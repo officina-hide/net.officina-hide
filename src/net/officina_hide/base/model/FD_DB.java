@@ -143,12 +143,65 @@ public class FD_DB implements I_FD_DB {
 	 * @param tableId テーブル情報ID[Table information ID]
 	 */
 	public void createTable(FD_EnvData env, long tableId) {
+		PreparedStatement pstmt = null;
 		//テーブル情報取得
 		X_FD_Table table = new X_FD_Table(env, tableId);
-		System.out.println(table.getFD_Table_Name());
 		//テーブル項目情報取得
+		FD_Column column = new FD_Column(env);
+		List<X_FD_Column> columns = column.getColumnList(env, table.getFD_Table_ID());
+		System.out.println(columns.size());
 		//既登録分のテーブルをDropする。
+		dropTable(env, table.getFD_Table_Name());
 		//テーブル生成
+		StringBuffer createSQL = new StringBuffer();
+		try {
+			createSQL.append("Create Table if not exists ").append(table.getFD_Table_Name()).append(" (");
+			for(X_FD_Column xcolumn : columns) {
+				createSQL.append(xcolumn.getFD_Column_Name());
+				System.out.println(xcolumn.getFD_ColumnType().getFD_Reference_Name());
+				switch(xcolumn.getFD_ColumnType().getFD_Reference_Name()) {
+				case COLUMN_TYPE_ID_KEY_NAME:
+					createSQL.append(COLUMN_TYPE_ID_KEY).append(" ");
+					break;
+				}
+				if(xcolumn.getFD_Name() != null && xcolumn.getFD_Column_Name().length() > 0) {
+					createSQL.append(COMMENT).append(" ")
+						.append(FD_SQ).append(xcolumn.getFD_Name()).append(FD_SQ).append(" ");
+				}
+				createSQL.append(",");
+			}
+			createSQL.append(SQL_CREATE_COMMON_COLUMN);
+			createSQL.append(") ");
+			createSQL.append(COMMENT).append(" ").append(FD_SQ).append(table.getFD_Name()).append(FD_SQ);
+			System.out.println(createSQL.toString());
+			connection(env);
+			pstmt = getConn().prepareStatement(createSQL.toString());
+			pstmt.execute();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DBClose(pstmt, null);
+		}
+		
+	}
+
+	/**
+	 * テーブル削除[Drop table]
+	 * @param env 環境情報[Environment information]
+	 * @param tableName テーブル名[Table name]
+	 */
+	private void dropTable(FD_EnvData env, String tableName) {
+		PreparedStatement pstmt = null;
+		//既登録のテーブルを削除する。[Delete the registered table]
+		try {
+			connection(env);
+			pstmt = getConn().prepareStatement(SQL_DROP_TABLE.replaceAll("@tableName", tableName));
+			pstmt.execute();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DBClose(pstmt, null);
+		}
 	}
 
 	private final String SQL_ExistsTable =

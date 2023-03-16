@@ -83,4 +83,9 @@ public interface I_FD_Reference extends I_FD_DB {
 			+ FD_SQ + COLUMN_TYPE_UNSIGNED_BIGINT_COMMENT + FD_SQ + ","
 			+ REFERENCE_GROUP_COLUMN_TYPE_ID + ","
 			+ SQL_COMMON_COLUMN_INPUT_LIST;
+	
+	/** 参照情報取得用SQL */
+	public final String SQL_GET_RECORD =
+			"Select * From " + Table_Name + " "
+			+ "Where " + COLUMNNAME_FD_Reference_ID + " = ? ";
 }

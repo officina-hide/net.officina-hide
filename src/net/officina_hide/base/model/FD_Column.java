@@ -1,9 +1,12 @@
 package net.officina_hide.base.model;
 
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 /**
  * テーブル項目クラス[Table column class]
@@ -142,6 +145,35 @@ public class FD_Column extends FD_DB implements I_FD_Column {
 		this.addData(Table_ID, ADD_COMMON_COLUMN_CreatedBy, COLUMN_TYPE_UNSIGNED_BIGINT_NAME);
 		this.addData(Table_ID, ADD_COMMON_COLUMN_Updated, COLUMN_TYPE_DATETIME_NAME);
 		this.addData(Table_ID, ADD_COMMON_COLUMN_UpdatedBy, COLUMN_TYPE_UNSIGNED_BIGINT_NAME);
+	}
+
+	/**
+	 * 指定されたテーブル情報IDを持つテーブル項目情報のリストを作成する。<br>
+	 * [Create a list of table item information with the specified table information ID.]
+	 * @author officina-hide.net
+	 * @since 2023/03/09 Ver. 1.00
+	 * @param env 環境情報[Environment information]
+	 * @param tableId テーブル情報ID
+	 * @return テーブル項目情報リスト
+	 */
+	public List<X_FD_Column> getColumnList(FD_EnvData env, long tableId) {
+		List<X_FD_Column> list = new ArrayList<>();
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {
+			connection(env);
+			pstmt = getConn().prepareStatement(GET_COLUMN_DATALIST);
+			pstmt.setLong(1, tableId);
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				list.add(new X_FD_Column(env, rs.getLong(COLUMNNAME_FD_Column_ID)));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DBClose(pstmt, rs);
+		}
+		return list;
 	}
 
 }

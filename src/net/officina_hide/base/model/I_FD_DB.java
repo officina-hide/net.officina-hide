@@ -45,7 +45,7 @@ public interface I_FD_DB {
 	/** SQL用カラム属性 : 情報ID */
 	public final String COLUMN_TYPE_ID_KEY = " bigint unsigned NOT NULL PRIMARY KEY ";
 	public final String COLUMN_TYPE_ID = " bigint unsigned ";
-	public final String COLUMN_TYPE_ID_KEY_NAME = "ID";
+	public final String COLUMN_TYPE_ID_KEY_NAME = "IDKey";
 	public final String COLUMN_TYPE_ID_KEY_COMMENT = "情報ID";
 	/** SQL用カラム属性 : 文字列 */
 	public final String COLUMN_TYPE_VARCHAR = " varchar(n) ";

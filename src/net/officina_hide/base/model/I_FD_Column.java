@@ -83,4 +83,13 @@ public interface I_FD_Column extends I_FD_DB {
 			+ "?" + ","
 			+ FD_SQ + YESNO_YES + FD_SQ + ", "
 			+ SQL_COMMON_COLUMN_INPUT_LIST;
+	
+	public final String GET_COLUMN_DATALIST = 
+			"Select * From " + I_FD_Column.Table_Name + " "
+			+ "Where " + I_FD_Column.COLUMNNAME_FD_Table_ID + " = ? ";
+	
+	public final String GET_COLUMN_DATA = 
+			"Select * From " + I_FD_Column.Table_Name + " "
+			+ "Where " + I_FD_Column.COLUMNNAME_FD_Column_ID + " = ? ";
+	
 }
