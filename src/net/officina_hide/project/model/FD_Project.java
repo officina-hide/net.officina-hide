@@ -57,6 +57,7 @@ public class FD_Project extends X_FD_Project implements I_FD_Project {
 		FD_Column column = new FD_Column(env);
 		long tebleId = table.addData(ADD_FD_Table);
 		column.addData(tebleId, ADD_COLUMN_FD_Project_ID, COLUMN_TYPE_ID_KEY_NAME);
+		column.addData(tebleId, ADD_COLUMN_FD_Project_Name, COLUMN_TYPE_VARCHAR_NAME);
 		createTable(env, tebleId);
 	}
 }

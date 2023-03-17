@@ -102,6 +102,7 @@ public class FD_Column extends FD_DB implements I_FD_Column {
 		sql.append(COLUMNNAME_FD_Column_Name).append(",");
 		sql.append(COLUMNNAME_FD_Name).append(",");
 		sql.append(COLUMNNAME_FD_ColumnType_ID).append(",");
+		sql.append(COLUMNNAME_FD_Size).append(",");
 		sql.append(COLUMNNAME_FD_NotNull).append(",");
 		sql.append(SQL_COMMON_COLUMN_LIST);
 		sql.append(")");

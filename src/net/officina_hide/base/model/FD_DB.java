@@ -163,6 +163,9 @@ public class FD_DB implements I_FD_DB {
 				case COLUMN_TYPE_ID_KEY_NAME:
 					createSQL.append(COLUMN_TYPE_ID_KEY).append(" ");
 					break;
+				case COLUMN_TYPE_VARCHAR_NAME:
+					createSQL.append(" varchar(100) ").append(" ");	//仮 2023/03/17
+					break;
 				}
 				if(xcolumn.getFD_Name() != null && xcolumn.getFD_Column_Name().length() > 0) {
 					createSQL.append(COMMENT).append(" ")

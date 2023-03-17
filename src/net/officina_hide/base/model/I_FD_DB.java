@@ -42,6 +42,7 @@ public interface I_FD_DB {
 	public final String FD_SQ = "'";
 
 	/** SQL用カラム属性設定[Column attribute setting for SQL] */
+	public final int SIZE_ZERO = 0;
 	/** SQL用カラム属性 : 情報ID */
 	public final String COLUMN_TYPE_ID_KEY = " bigint unsigned NOT NULL PRIMARY KEY ";
 	public final String COLUMN_TYPE_ID = " bigint unsigned ";
@@ -59,6 +60,7 @@ public interface I_FD_DB {
 	public final String COLUMN_TYPE_UNSIGNED_BIGINT = " bigint unsigned ";
 	public final String COLUMN_TYPE_UNSIGNED_BIGINT_NAME = "BigInt Unsigned";
 	public final String COLUMN_TYPE_UNSIGNED_BIGINT_COMMENT = "符号無し整数";
+	public final String COLUMN_TYPE_UNSIGNED_INT = " int unsigned ";
 	/** SQL用カラム属性 : YesNo */
 	public final String COLUMN_TYPE_YESNO = " enum ('Y', 'N')";
 	public final String YESNO_YES = "Y";

@@ -17,7 +17,10 @@ public interface I_FD_Project extends I_FD_DB {
 	/** 項目情報 : プロジェクト情報ID */
 	public final String COLUMNNAME_FD_Project_ID = Table_Name + "_ID";
 	public final String NAME_FD_Project_ID = Table_Comment + "ID";
-
+	/** 項目情報 : プロジェクト名称 */
+	public final String COLUMNNAME_FD_Project_Name = "FD_Project_Name";
+	public final String NAME_FD_Project_Name = "プロジェクト情報";
+	public final int SIZE_FD_Project_Name = 100;
 
 	/** テーブル情報登録 */
 	public final String ADD_FD_Table = "@TableID@" + "," + FD_SQ + Table_Name + FD_SQ + ","
@@ -28,7 +31,14 @@ public interface I_FD_Project extends I_FD_DB {
 	public final String ADD_COLUMN_FD_Project_ID = "?" + "," + "?" + ","
 			+ FD_SQ + COLUMNNAME_FD_Project_ID + FD_SQ + ","
 			+ FD_SQ + NAME_FD_Project_ID + FD_SQ + ","
-			+ "?" + ","
+			+ "?" + "," + SIZE_ZERO + ","
+			+ FD_SQ + YESNO_YES + FD_SQ + ","
+			+ SQL_COMMON_COLUMN_INPUT_LIST;
+	
+	public final String ADD_COLUMN_FD_Project_Name = "?" + "," + "?" + ","
+			+ FD_SQ + COLUMNNAME_FD_Project_Name + FD_SQ + ","
+			+ FD_SQ + NAME_FD_Project_Name + FD_SQ + ","
+			+ "?" + ","	+ SIZE_FD_Project_Name + ","
 			+ FD_SQ + YESNO_YES + FD_SQ + ","
 			+ SQL_COMMON_COLUMN_INPUT_LIST;
 }

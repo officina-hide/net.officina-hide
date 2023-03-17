@@ -34,6 +34,10 @@ public interface I_FD_Column extends I_FD_DB {
 	public final String COLUMNNAME_FD_NotNull = "FD_NotNull";
 	public final String NAME_FD_NotNull = "必須項目";
 	public final String COMMENT_FD_Null = "項目に対して、入力を可ならず必要とする場合'Y'を設定する。";
+	/** 桁数[Column size] */
+	public final String COLUMNNAME_FD_Size = "FD_Size";
+	public final String NAME_FD_Size = "桁数";
+	public final String COMMENT_FD_Size = "文字列等の項目に対する桁数を設定する。";
 	
 	/** テーブル項目情報構築用SQL[SQL for building table column information] */
 	public final String SQL_CREATE_FD_COLUMN = 
@@ -48,6 +52,8 @@ public interface I_FD_Column extends I_FD_DB {
 				+ COMMENT + FD_SQ + NAME_FD_Name + FD_SQ + " "
 			+ "," + COLUMNNAME_FD_ColumnType_ID + COLUMN_TYPE_ID + " "
 				+ COMMENT + FD_SQ + NAME_FD_ColumnType_ID + FD_SQ + " "
+			+ "," + COLUMNNAME_FD_Size + COLUMN_TYPE_UNSIGNED_INT + " Default 0 "
+				+ COMMENT + FD_SQ + NAME_FD_Size + FD_SQ + " "
 			+ "," + COLUMNNAME_FD_NotNull + COLUMN_TYPE_YESNO + " "
 				+ " default 'N' " + " "
 				+ COMMENT + FD_SQ + NAME_FD_NotNull + FD_SQ + " "
@@ -82,6 +88,12 @@ public interface I_FD_Column extends I_FD_DB {
 			+ FD_SQ + NAME_FD_Column_Name + FD_SQ + ","
 			+ "?" + ","
 			+ FD_SQ + YESNO_YES + FD_SQ + ", "
+			+ SQL_COMMON_COLUMN_INPUT_LIST;
+	public final String ADD_COLUMN_FD_Size = "?" + "," + "?" + ","
+			+ FD_SQ + COLUMNNAME_FD_Size + FD_SQ + ","
+			+ FD_SQ + NAME_FD_Size + FD_SQ + ","
+			+ "?" + ","
+			+ FD_SQ + YESNO_NO + FD_SQ + ","
 			+ SQL_COMMON_COLUMN_INPUT_LIST;
 	
 	public final String GET_COLUMN_DATALIST = 
