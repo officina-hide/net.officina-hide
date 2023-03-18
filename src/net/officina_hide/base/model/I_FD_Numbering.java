@@ -57,25 +57,25 @@ public interface I_FD_Numbering extends I_FD_DB {
 	public final String ADD_COLUMN_FD_TABLE_ID = "?" + "," + "?" + ","
 			+ FD_SQ + COLUMNNAME_FD_Table_ID + FD_SQ + ","
 			+ FD_SQ + NAME_FD_Table_ID + FD_SQ + ","
-			+ "?" + ","
+			+ "?" + ","+ SIZE_ZERO + ","
 			+ FD_SQ + YESNO_YES + FD_SQ + ","
 			+ SQL_COMMON_COLUMN_INPUT_LIST;
 	public final String ADD_COLUMN_FD_COLUMN_ID =  "?" + "," + "?" + ","
 			+ FD_SQ + COLUMNNAME_FD_Numbering_ID + FD_SQ + ","
 			+ FD_SQ + NAME_FD_Numbering_ID + FD_SQ + ","
-			+ "?" + ","
+			+ "?" + ","+ SIZE_ZERO + ","
 			+ FD_SQ + YESNO_YES + FD_SQ + ","
 			+ SQL_COMMON_COLUMN_INPUT_LIST;
 	public final String ADD_COLUMN_FD_InitialNumber = "?" + "," + "?" + ","
 			+ FD_SQ + COLUMNNAME_FD_InitialNumber + FD_SQ + ","
 			+ FD_SQ + NAME_FD_InitialNumber + FD_SQ + ","
-			+ "?" + ","
+			+ "?" + ","+ SIZE_ZERO + ","
 			+ FD_SQ + YESNO_YES + FD_SQ + ","
 			+ SQL_COMMON_COLUMN_INPUT_LIST;
 	public final String ADD_COLUMN_FD_CurrentNumber = "?" + "," + "?" + ","
 			+ FD_SQ + COLUMNNAME_FD_CurrentNumber + FD_SQ + ","
 			+ FD_SQ + NAME_FD_CurrentNumber + FD_SQ + ","
-			+ "?" + ","
+			+ "?" + ","+ SIZE_ZERO + ","
 			+ FD_SQ + YESNO_YES + FD_SQ + ","
 			+ SQL_COMMON_COLUMN_INPUT_LIST;
 }

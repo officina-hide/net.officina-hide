@@ -74,25 +74,25 @@ public interface I_FD_Column extends I_FD_DB {
 	public final String ADD_COLUMN_FD_COLUMN_ID = "?" + "," + "?" + ","
 			+ FD_SQ + COLUMNNAME_FD_Column_ID + FD_SQ + ","
 			+ FD_SQ + NAME_FD_Column_ID + FD_SQ + ","
-			+ "?" + ","
+			+ "?" + ","+ SIZE_ZERO + ","
 			+ FD_SQ + YESNO_YES + FD_SQ + ", "
 			+ SQL_COMMON_COLUMN_INPUT_LIST;
 	public final String ADD_COLUMN_FD_Table_ID = "?" + "," + "?" + ","
 			+ FD_SQ + COLUMNNAME_FD_Table_ID + FD_SQ + ","
 			+ FD_SQ + NAME_FD_Table_ID + FD_SQ + ","
-			+ "?" + ","
+			+ "?" + ","+ SIZE_ZERO + ","
 			+ FD_SQ + YESNO_YES + FD_SQ + ", "
 			+ SQL_COMMON_COLUMN_INPUT_LIST;
 	public final String ADD_COLUMN_FD_Column_Name = "?" + "," + "?" + ","
 			+ FD_SQ + COLUMNNAME_FD_Column_Name + FD_SQ + ","
 			+ FD_SQ + NAME_FD_Column_Name + FD_SQ + ","
-			+ "?" + ","
+			+ "?" + "," + SIZE_FD_Column_Name + ","
 			+ FD_SQ + YESNO_YES + FD_SQ + ", "
 			+ SQL_COMMON_COLUMN_INPUT_LIST;
 	public final String ADD_COLUMN_FD_Size = "?" + "," + "?" + ","
 			+ FD_SQ + COLUMNNAME_FD_Size + FD_SQ + ","
 			+ FD_SQ + NAME_FD_Size + FD_SQ + ","
-			+ "?" + ","
+			+ "?" + ","+ SIZE_ZERO + ","
 			+ FD_SQ + YESNO_NO + FD_SQ + ","
 			+ SQL_COMMON_COLUMN_INPUT_LIST;
 	

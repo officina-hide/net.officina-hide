@@ -92,25 +92,25 @@ public interface I_FD_DB {
 	public final String ADD_COMMON_COLUMN_Created = "?" + "," + "?" + "," 
 			+ FD_SQ + COLUMNNAME_Created + FD_SQ + ","
 			+ FD_SQ + NAME_Created + FD_SQ + ","
-			+ "?" + ","
+			+ "?" + "," + SIZE_ZERO + ","
 			+ FD_SQ + YESNO_NO + FD_SQ + ","
 			+ SQL_COMMON_COLUMN_INPUT_LIST;
 	public final String ADD_COMMON_COLUMN_CreatedBy = "?" + "," + "?" + "," 
 			+ FD_SQ + COLUMNNAME_CreatedBy + FD_SQ + ","
 			+ FD_SQ + NAME_CreatedBy + FD_SQ + ","
-			+ "?" + ","
+			+ "?" + "," + SIZE_ZERO + ","
 			+ FD_SQ + YESNO_NO + FD_SQ + ","
 			+ SQL_COMMON_COLUMN_INPUT_LIST;
 	public final String ADD_COMMON_COLUMN_Updated = "?" + "," + "?" + "," 
 			+ FD_SQ + COLUMNNAME_Updated + FD_SQ + ","
 			+ FD_SQ + NAME_Updated + FD_SQ + ","
-			+ "?" + ","
+			+ "?" + "," + SIZE_ZERO + ","
 			+ FD_SQ + YESNO_NO + FD_SQ + ","
 			+ SQL_COMMON_COLUMN_INPUT_LIST;
 	public final String ADD_COMMON_COLUMN_UpdatedBy = "?" + "," + "?" + "," 
 			+ FD_SQ + COLUMNNAME_UpdatedBy + FD_SQ + ","
 			+ FD_SQ + NAME_UpdatedBy + FD_SQ + ","
-			+ "?" + ","
+			+ "?" + "," + SIZE_ZERO + ","
 			+ FD_SQ + YESNO_NO + FD_SQ + ","
 			+ SQL_COMMON_COLUMN_INPUT_LIST;
 	

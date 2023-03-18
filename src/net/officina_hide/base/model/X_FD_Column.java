@@ -27,6 +27,8 @@ public class X_FD_Column extends FD_DB implements I_FD_Column {
 	/** 項目種別ID */
 	private long FD_ColumnType_ID;
 	private X_FD_Reference FD_ColumnType;
+	/** 項目サイズ[Column size] */
+	private int FD_Size;
 	/** 必須判定 */
 	private boolean FD_NotNull;
 	
@@ -59,6 +61,7 @@ public class X_FD_Column extends FD_DB implements I_FD_Column {
 				} else {
 					setFD_NotNull(false);
 				}
+				setFD_Size(rs.getInt(COLUMNNAME_FD_Size));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -104,7 +107,6 @@ public class X_FD_Column extends FD_DB implements I_FD_Column {
 	public void setFD_ColumnType_ID(long fD_ColumnType_ID) {
 		FD_ColumnType_ID = fD_ColumnType_ID;
 	}
-
 	public String getFD_Name() {
 		return FD_Name;
 	}
@@ -112,5 +114,10 @@ public class X_FD_Column extends FD_DB implements I_FD_Column {
 	public void setFD_Name(String fD_Name) {
 		FD_Name = fD_Name;
 	}
-	
+	public int getFD_Size() {
+		return FD_Size;
+	}
+	public void setFD_Size(int fD_Size) {
+		FD_Size = fD_Size;
+	}
 }
