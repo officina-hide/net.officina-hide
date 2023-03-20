@@ -32,6 +32,8 @@ public class ProjectSetup extends Application {
 	private FD_DispWithButton projectInfo;
 	/** 初期化ボタン */
 	private FD_Button initialProject;
+	/** 画面項目リスト */
+	private FD_ViewItemList vlist;
 	
 	@Override
 	public void start(Stage stage) throws Exception {

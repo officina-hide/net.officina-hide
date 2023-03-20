@@ -26,7 +26,7 @@ public class ProjectInitialize {
 		FD_Project project = new FD_Project();
 		project.create(env);
 
-	
+		
 		System.out.println("プロジェクト初期設定終了 : "+new Date());
-}
+	}
 }

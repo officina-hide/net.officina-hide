@@ -18,6 +18,8 @@ public class FD_Button extends Button {
 	private String className = null;
 	/** 環境情報 */
 	private FD_EnvData env;
+	/** 処理パラメータ[Process parameter] */
+	
 
 	/**
 	 * コンストラクタ[Constructor]
